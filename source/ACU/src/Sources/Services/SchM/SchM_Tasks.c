@@ -12,12 +12,14 @@
 
 #include "SchM_Tasks.h"
 #include "Can_Manager.h"
+#include "ADC.h"
 
 
 
 void SchM_3p125ms_Task(void)
 {
-		
+	//test();
+	test2();
 }
 
 

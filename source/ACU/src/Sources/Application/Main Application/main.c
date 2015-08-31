@@ -7,6 +7,7 @@
 #include    "Can.h"
 #include    "Can_Cfg.h"
 #include    "sysinit.h"
+#include    "ADC.h"
 
 
 
@@ -24,6 +25,9 @@ int main(void)
 	
 	/*Initialize LEDs on TRK-MPC560xB board */
 	vfnGPIO_LED_Init();
+	
+	/* Initialize ADC */
+	ADCModeSelector(Scan);
 	 
 	/* SBC dependencies */
 	InitDSPI_1();
