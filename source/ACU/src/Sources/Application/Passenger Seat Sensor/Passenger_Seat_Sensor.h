@@ -3,7 +3,7 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Include:        Occupancy_Handling_module.h
+* C Include:        Passenger_Seat_Sensor.h
 * version:          1.0 
 * created_by:       Gilberto Ochoa
 * date_created:     Aug 30 2015
