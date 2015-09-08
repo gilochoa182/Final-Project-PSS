@@ -146,3 +146,23 @@
  	
  	return adc_value;
  }
+ 
+ 
+ 
+ T_UWORD Read_ADC_2(T_UBYTE channel)
+ {
+ 	T_UWORD adc_value_2 = 0;
+ 	adc_value_2 = (T_UWORD) ADC.CDR[channel].B.CDATA;
+ 	
+ 	return adc_value_2;
+ }
+ 
+ 
+ 
+ T_UWORD Read_ADC_3(T_UBYTE channel)
+ {
+ 	T_UWORD adc_value_3 = 0;
+ 	adc_value_3 = (T_UWORD) ADC.CDR[channel].B.CDATA;
+ 	
+ 	return adc_value_3;
+ }

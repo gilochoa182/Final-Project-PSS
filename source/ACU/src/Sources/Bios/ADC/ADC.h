@@ -78,6 +78,8 @@
 
 extern void ADCModeSelector(T_UBYTE adcmode);
 extern T_UWORD Read_ADC(T_UBYTE channel);
+extern T_UWORD Read_ADC_2(T_UBYTE channel);
+extern T_UWORD Read_ADC_3(T_UBYTE channel);
 
 /* Functions macros */
 

@@ -3,10 +3,10 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Include:        Passenger_Seat_Sensor.h
-* version:          1.0 
+* C Include:        Passenger_Seat_Belt_Sensor.h
+* version:          1.0
 * created_by:       Gilberto Ochoa
-* date_created:     Aug 30 2015
+* date_created:     Sep 07 2015
 *=============================================================================*/
 /* DESCRIPTION : Header file template                                         */
 /*============================================================================*/
@@ -18,20 +18,19 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | 30/08/2015  |                               | Gilberto Ochoa   */
+/*  1.0      | 07/09/2015  | SAR/SIF/SCN_xxx               | Gilberto Ochoa   */
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
-#ifndef PASSENGER_SEAT_SENSOR_H                               /* To avoid double inclusion */
-#define PASSENGER_SEAT_SENSOR_H
+#ifndef PASSENGER_SEAT_BELT_SENSOR_H                               /* To avoid double inclusion */
+#define PASSENGER_SEAT_BELT_SENSOR_H
 
 /* Includes */
 /* -------- */
 
-/*-- Defines -----------------------------------------------------------------*/
+#include "MCU_derivative.h"
 
-#define FIVE_HUNDRED_MS    5
-#define SIX_SAMPLES        6
+/*-- Defines -----------------------------------------------------------------*/
 
 
 
@@ -43,23 +42,22 @@
 
 typedef enum
 {
-	FAULTY,
-	UNOCCUPIED, 
-	UNDETERMINED,
-	OCCUPIED
-}SeatSensorStateType;
+	DRI_FAULTY,
+	BUCKLE, 
+	DRI_UNDETERMINED,
+	UNBUCKLE
+}PassengerSeatSensorStateType;
 
 
 typedef struct
 {
 	T_UBYTE	faulty:4;
-	T_UBYTE	unoccupied:4;
+	T_UBYTE	unbuckle :4;
 	T_UBYTE	undetermined:4;
-	T_UBYTE	occupied:4;
+	T_UBYTE	buckle:4;
 	T_UBYTE	time:4;
 	T_UBYTE	:4;
-}SeatSensorCountType;
-
+}PassengerSeatSensorCountType;
 
 /*==================================================*/ 
 /* Declaration of exported constants                */
@@ -94,8 +92,8 @@ typedef struct
 /* ---------------------------------------- */
 
 /* Functions prototypes */
-extern void PassengerSeatSensor(void);
-extern SeatSensorStateType GetSeatSensorState(void);
+extern void PassengerSeatBeltSensor(void);
+extern PassengerSeatSensorStateType GetPassengerSeatBeltState(void);
 
 /* Functions macros */
 

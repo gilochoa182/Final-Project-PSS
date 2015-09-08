@@ -16,9 +16,12 @@
 
 
 
+
 void SchM_3p125ms_Task(void)
 {
-	test();
+	//test_SeatSensor();
+	//testDriver();
+	testPassenger();
 }
 
 
@@ -39,14 +42,14 @@ void SchM_12p5ms_Task(void)
 
 void SchM_25ms_Task(void)
 {
-	
+	DriverSeatBeltSensor();
 }
 
 
 
 void SchM_50ms_Task(void)
 {
-
+	PassengerSeatBeltSensor();
 }
 
 

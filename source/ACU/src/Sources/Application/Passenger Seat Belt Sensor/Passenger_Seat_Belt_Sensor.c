@@ -3,7 +3,7 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Source:         Driver_Seat_Belt_Sensor.c
+* C Source:         Passenger_Seat_Belt_Sensor.c
 * version:          1.0
 * created_by:       Gilberto Ochoa
 * date_created:     Sep  7 2015
@@ -25,11 +25,13 @@
 /* Includes */
 /* -------- */
 
-#include "Driver_Seat_Belt_Sensor.h"
+#include "Passenger_Seat_Belt_Sensor.h"
 
 #include "ADC.h" 
 
 #include "SensorsCommon.h"
+
+#include "Passenger_Seat_Sensor.h"
 
 #include "GPIO.h"
 
@@ -37,9 +39,9 @@
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-DriverSeatSensorStateType  DriverSeatBeltState = UNBUCKLE;
+PassengerSeatSensorStateType  PassengerSeatBeltState = UNBUCKLE;
 
-DriverSeatSensorCountType  Dricounter;
+PassengerSeatSensorCountType  Passcounter;
 
 /*==================================================*/ 
 /* Definition of constants                          */
@@ -102,168 +104,175 @@ DriverSeatSensorCountType  Dricounter;
  *  Return               :
  *  Critical/explanation :    [yes / No]
  **************************************************************/
- void DriverSeatBeltSensor(void)
+ void PassengerSeatBeltSensor(void)
  {	
-	Dricounter.time++;
-	if(Dricounter.time  == TWO_HUNDRED_MS)
-	{
-		Dricounter.time = ZERO_MS;
-		
-		/***************   FAULTY   ******************************/
-		if(Read_ADC_3(DRIV_SEATBELT) < TWO_VOLTS)
+ 	if(GetSeatSensorState() ==  OCCUPIED)
+ 	{
+ 		Passcounter.time++;
+		if(Passcounter.time  == PASS_TWO_HUNDRED_MS)
 		{
-			Dricounter.unbuckle = ZERO_SAMPLES;
-			Dricounter.buckle = ZERO_SAMPLES;
-			Dricounter.undetermined = ZERO_SAMPLES;
-			
-			Dricounter.faulty++;
-			
-			if(Dricounter.faulty == FIVE_SAMPLES)
+			Passcounter.time = ZERO_MS;
+		
+			/***************   FAULTY   ******************************/
+			if(Read_ADC_2(PASS_SEATBELT) < TWO_VOLTS)
 			{
-				Dricounter.faulty = ZERO_SAMPLES;
+				Passcounter.unbuckle = ZERO_SAMPLES;
+				Passcounter.buckle = ZERO_SAMPLES;
+				Passcounter.undetermined = ZERO_SAMPLES;
+			
+				Passcounter.faulty++;
+			
+				if(Passcounter.faulty == FIVE_SAMPLES)
+				{
+					Passcounter.faulty = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = DRI_FAULTY;
+					PassengerSeatBeltState = DRI_FAULTY;
+				}
+			
+				else
+				{
+					/* Do nothing */
+				}
+			
 			}
+			/***********************************************************************/
+		
+		
+		
+		
+		
+			/***************   UNBUCKLE   ******************************/
+			else if((Read_ADC_2(PASS_SEATBELT) > TWO_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TEN_VOLTS))
+			{	
+				Passcounter.faulty = ZERO_SAMPLES;
+				Passcounter.buckle = ZERO_SAMPLES;
+				Passcounter.undetermined = ZERO_SAMPLES;
 			
-			else
-			{
-				/* Do nothing */
-			}
+				Passcounter.unbuckle++;
 			
-		}
-		/***********************************************************************/
-		
-		
-		
-		
-		
-		/***************   UNBUCKLE   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TWO_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TEN_VOLTS))
-		{	
-			Dricounter.faulty = ZERO_SAMPLES;
-			Dricounter.buckle = ZERO_SAMPLES;
-			Dricounter.undetermined = ZERO_SAMPLES;
-			
-			Dricounter.unbuckle++;
-			
-			if(Dricounter.unbuckle == FIVE_SAMPLES)
-			{
-				Dricounter.unbuckle = ZERO_SAMPLES;
+				if(Passcounter.unbuckle == FIVE_SAMPLES)
+				{
+					Passcounter.unbuckle = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = UNBUCKLE;
+					PassengerSeatBeltState = UNBUCKLE;
+				}
+			
+				else
+				{
+					/* Do nothing */
+				}
 			}
-			
-			else
-			{
-				/* Do nothing */
-			}
-		}
-		/***********************************************************************/
+			/***********************************************************************/
 		
 		
 		
 		
 		
-		/***************   UNDETERMINED   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TEN_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWELVE_VOLTS))
-		{	
-			Dricounter.faulty = ZERO_SAMPLES;
-			Dricounter.unbuckle = ZERO_SAMPLES;
-			Dricounter.buckle = ZERO_SAMPLES;
+			/***************   UNDETERMINED   ******************************/
+			else if((Read_ADC_2(PASS_SEATBELT) > TEN_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWELVE_VOLTS))
+			{	
+				Passcounter.faulty = ZERO_SAMPLES;
+				Passcounter.unbuckle = ZERO_SAMPLES;
+				Passcounter.buckle = ZERO_SAMPLES;
 			
 			
-			Dricounter.undetermined++;
+				Passcounter.undetermined++;
 			
-			if(Dricounter.undetermined == FIVE_SAMPLES)
-			{
-				Dricounter.undetermined = ZERO_SAMPLES;
+				if(Passcounter.undetermined == FIVE_SAMPLES)
+				{
+					Passcounter.undetermined = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = DRI_UNDETERMINED;
+					PassengerSeatBeltState = DRI_UNDETERMINED;
+				}
+			
+				else
+				{
+					/* Do nothing */
+				}
+			
 			}
+			/***********************************************************************/
+		
+		
+		
+		
+		
+			/***************   BUCKLE   ******************************/
+			else if((Read_ADC_2(PASS_SEATBELT) > TWELVE_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWENTY_VOLTS))
+			{	
+				Passcounter.faulty = ZERO_SAMPLES;
+				Passcounter.undetermined = ZERO_SAMPLES;
+				Passcounter.unbuckle = ZERO_SAMPLES;
 			
-			else
-			{
-				/* Do nothing */
+				Passcounter.buckle++;
+			
+				if(Passcounter.buckle == FIVE_SAMPLES)
+				{
+					Passcounter.buckle = ZERO_SAMPLES;
+					
+					PassengerSeatBeltState = BUCKLE;
+				}
+			
+				else
+				{
+					/* Do nothing */
+				}
 			}
+			/***********************************************************************/
+		
+		
+		
+		
+		
+			/***************   FAULTY   ******************************/
+			else if(Read_ADC_2(PASS_SEATBELT) > TWENTY_VOLTS)
+			{	
+				Passcounter.undetermined = ZERO_SAMPLES;
+				Passcounter.buckle = ZERO_SAMPLES;
+				Passcounter.unbuckle = ZERO_SAMPLES;
 			
-		}
-		/***********************************************************************/
-		
-		
-		
-		
-		
-		/***************   BUCKLE   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TWELVE_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWENTY_VOLTS))
-		{	
-			Dricounter.faulty = ZERO_SAMPLES;
-			Dricounter.undetermined = ZERO_SAMPLES;
-			Dricounter.unbuckle = ZERO_SAMPLES;
+				Passcounter.faulty++;
 			
-			Dricounter.buckle++;
-			
-			if(Dricounter.buckle == FIVE_SAMPLES)
-			{
-				Dricounter.buckle = ZERO_SAMPLES;
+				if(Passcounter.faulty == FIVE_SAMPLES)
+				{
+					Passcounter.faulty = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = BUCKLE;
+					PassengerSeatBeltState = DRI_FAULTY;
+				}
+			
+				else
+				{
+					/* Do nothing */
+				}
+			
 			}
-			
-			else
-			{
-				/* Do nothing */
-			}
-		}
-		/***********************************************************************/
-		
-		
-		
-		
-		
-		/***************   FAULTY   ******************************/
-		else if(Read_ADC_3(DRIV_SEATBELT) > TWENTY_VOLTS)
-		{	
-			Dricounter.undetermined = ZERO_SAMPLES;
-			Dricounter.buckle = ZERO_SAMPLES;
-			Dricounter.unbuckle = ZERO_SAMPLES;
-			
-			Dricounter.faulty++;
-			
-			if(Dricounter.faulty == FIVE_SAMPLES)
-			{
-				Dricounter.faulty = ZERO_SAMPLES;
-				
-				DriverSeatBeltState = DRI_FAULTY;
-			}
-			
-			else
-			{
-				/* Do nothing */
-			}
-			
-		}
-		/***********************************************************************/	
-	}
+			/***********************************************************************/	
+		}   /* End Control Time */
 	
-	else
+		else
+		{
+			/* Do nothing */
+		}
+		
+ 	}  /* End if detected occupied*/
+	
+	else if(GetSeatSensorState() ==  UNOCCUPIED)
 	{
 		/* Do nothing */
 	}
-		
+} /* End PassengerSeatBeltSensor*/
+
+
+PassengerSeatSensorStateType GetPassengerSeatBeltState(void)
+{
+	return PassengerSeatBeltState;
 }
 
 
-DriverSeatSensorStateType GetDriverSeatBeltState(void)
+
+void testPassenger(void)
 {
-	return DriverSeatBeltState;
-}
-
-
-
-/*
-void testDriver(void)
-{
-	switch(GetDriverSeatBeltState())
+	switch(GetPassengerSeatBeltState())
 	{
 		case DRI_FAULTY:
 			LED_ON(LED1);
@@ -293,4 +302,4 @@ void testDriver(void)
 			LED_ON(LED4);
 			break;
 	}
-}*/
+}

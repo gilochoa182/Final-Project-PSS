@@ -28,6 +28,7 @@
 #include "ADC.h" 
 #include "GPIO.h"
 #include "Passenger_Seat_Sensor.h"
+#include "SensorsCommon.h"
 
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
@@ -96,7 +97,7 @@ void PassengerSeatSensor(void)
 		counter.time = ZERO_MS;
 		
 		/***************   FAULTY   ******************************/
-		if((Read_ADC(PASS_SEAT_SENS) > ZERO_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWO_VOLTS))
+		if(Read_ADC(PASS_SEAT_SENS) < TWO_VOLTS)
 		{
 			counter.unoccupied = ZERO_SAMPLES;
 			counter.occupied = ZERO_SAMPLES;
@@ -257,8 +258,8 @@ SeatSensorStateType GetSeatSensorState(void)
 }
 
 
-
-void test(void)
+/*
+void test_SeatSensor(void)
 {
 	switch(GetSeatSensorState())
 	{
@@ -290,4 +291,4 @@ void test(void)
 			LED_ON(LED4);
 			break;
 	}
-}
+}*/
