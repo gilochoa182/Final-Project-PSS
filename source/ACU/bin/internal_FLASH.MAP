@@ -74,13 +74,17 @@ Link map of __start
     3] SchMConfig (object,global) found in SchM_Cfg.o 
      4] SchMTaskDescConfig (object,global) found in SchM_Cfg.o 
       5] SchM_3p125ms_Task (func,global) found in SchM_Tasks.o 
-       6] test2 (func,global) found in Passenger_Seat_Sensor.o 
-        7] Read_ADC (func,global) found in ADC.o 
+       6] test (func,global) found in Passenger_Seat_Sensor.o 
+        7] GetSeatSensorState (func,global) found in Passenger_Seat_Sensor.o 
+         8] SeatSensorState (object,global) found in Passenger_Seat_Sensor.o 
       5] SchM_6p25ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_12p5ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_25ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_50ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_100ms_Task (func,global) found in SchM_Tasks.o 
+       6] PassengerSeatSensor (func,global) found in Passenger_Seat_Sensor.o 
+        7] counter (object,global) found in Passenger_Seat_Sensor.o 
+        7] Read_ADC (func,global) found in ADC.o 
     3] SchM_Init (func,global) found in SchM.o 
      4] SchMConfigGlob (object,global) found in SchM.o 
      4] SchMTaskControlBlock (object,global) found in SchM.o 
@@ -122,7 +126,7 @@ Link map of __start
     3] .ivor_branch_table (section,local) found in ivor_branch_table.o 
     3] .ivor_branch_table.24 (notype,local) found in ivor_branch_table.o 
     3] .text (section,local) found in main.o 
-    3] .text.54 (notype,local) found in main.o 
+    3] .text.55 (notype,local) found in main.o 
     3] .text (section,local) found in PIT.o 
     3] .text.44 (notype,local) found in PIT.o 
     3] .text (section,local) found in GPIO.o 
@@ -130,7 +134,7 @@ Link map of __start
     3] .text (section,local) found in SchM.o 
     3] .text.78 (notype,local) found in SchM.o 
     3] .text (section,local) found in SchM_Tasks.o 
-    3] .text.34 (notype,local) found in SchM_Tasks.o 
+    3] .text.35 (notype,local) found in SchM_Tasks.o 
     3] .text (section,local) found in Can.o 
     3] .text.235 (notype,local) found in Can.o 
     3] .text (section,local) found in sysinit.o 
@@ -140,9 +144,9 @@ Link map of __start
     3] .text (section,local) found in bspimain.o 
     3] .text.22 (notype,local) found in bspimain.o 
     3] .text (section,local) found in ADC.o 
-    3] .text.22 (notype,local) found in ADC.o 
+    3] .text.24 (notype,local) found in ADC.o 
     3] .text (section,local) found in Passenger_Seat_Sensor.o 
-    3] .text.57 (notype,local) found in Passenger_Seat_Sensor.o 
+    3] .text.68 (notype,local) found in Passenger_Seat_Sensor.o 
     3] .init (section,local) found in Runtime.PPCEABI.VS.UC.a __start.o
     3] .init.130 (notype,local) found in Runtime.PPCEABI.VS.UC.a __start.o
     3] .text (section,local) found in Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
@@ -240,75 +244,76 @@ Link map of __start
   000000c8 000030 000020c8 00000978  2 INTC_InstallINTCInterruptHandler 	IntcInterrupts.o 
   000000f8 000018 000020f8 000009a8  2 enableIrq 	IntcInterrupts.o 
   00000110 000030 00002110 000009c0  2 INTC_InitINTCInterrupts 	IntcInterrupts.o 
-  00000140 000054 00002140 000009f0  1 .text 	main.o 
-  00000140 000054 00002140 000009f0  2 main 	main.o 
-  00000194 000000 00002194 00000a44  1 .text.54 	main.o 
-  00000194 0000d4 00002194 00000a44  1 .text 	PIT.o 
-  00000194 00000a 00002194 00000a44  2 PIT_device_init 	PIT.o 
-  0000019e 00005e 0000219e 00000a4e  2 PIT_channel_configure 	PIT.o 
-  000001fc 000018 000021fc 00000aac  2 PIT_channel_start 	PIT.o 
+  00000140 000056 00002140 000009f0  1 .text 	main.o 
+  00000140 000056 00002140 000009f0  2 main 	main.o 
+  00000196 000000 00002196 00000a46  1 .text.55 	main.o 
+  00000196 0000d4 00002196 00000a46  1 .text 	PIT.o 
+  00000196 00000a 00002196 00000a46  2 PIT_device_init 	PIT.o 
+  000001a0 00005e 000021a0 00000a50  2 PIT_channel_configure 	PIT.o 
+  000001fe 000018 000021fe 00000aae  2 PIT_channel_start 	PIT.o 
   UNUSED   000018 ........ ........    PIT_channel_stop PIT.o 
-  00000214 000054 00002214 00000ac4  2 PIT_channel_0_isr 	PIT.o 
-  00000268 000000 00002268 00000b18  1 .text.44 	PIT.o 
-  00000268 000190 00002268 00000b18  1 .text 	GPIO.o 
-  00000268 0000d2 00002268 00000b18  2 vfnGPIO_Init_channel 	GPIO.o 
-  0000033a 00001e 0000233a 00000bea  2 vfnGPIO_Output 	GPIO.o 
+  00000216 000054 00002216 00000ac6  2 PIT_channel_0_isr 	PIT.o 
+  0000026a 000000 0000226a 00000b1a  1 .text.44 	PIT.o 
+  0000026a 000190 0000226a 00000b1a  1 .text 	GPIO.o 
+  0000026a 0000d2 0000226a 00000b1a  2 vfnGPIO_Init_channel 	GPIO.o 
+  0000033c 00001e 0000233c 00000bec  2 vfnGPIO_Output 	GPIO.o 
   UNUSED   000128 ........ ........    vfnGPIO_FlashMainLED GPIO.o 
-  00000358 0000a0 00002358 00000c08  2 vfnGPIO_LED_Init 	GPIO.o 
-  000003f8 000000 000023f8 00000ca8  1 .text.47 	GPIO.o 
-  000003f8 0001be 000023f8 00000ca8  1 .text 	SchM.o 
-  000003f8 00006c 000023f8 00000ca8  2 SchM_OsTick 	SchM.o 
-  00000464 00009e 00002464 00000d14  2 SchM_Background 	SchM.o 
-  00000502 000090 00002502 00000db2  2 SchM_Init 	SchM.o 
-  00000592 000024 00002592 00000e42  2 SchM_Start 	SchM.o 
+  0000035a 0000a0 0000235a 00000c0a  2 vfnGPIO_LED_Init 	GPIO.o 
+  000003fa 000000 000023fa 00000caa  1 .text.47 	GPIO.o 
+  000003fa 0001be 000023fa 00000caa  1 .text 	SchM.o 
+  000003fa 00006c 000023fa 00000caa  2 SchM_OsTick 	SchM.o 
+  00000466 00009e 00002466 00000d16  2 SchM_Background 	SchM.o 
+  00000504 000090 00002504 00000db4  2 SchM_Init 	SchM.o 
+  00000594 000024 00002594 00000e44  2 SchM_Start 	SchM.o 
   UNUSED   000020 ........ ........    SchM_Stop SchM.o 
-  000005b6 000000 000025b6 00000e66  1 .text.78 	SchM.o 
-  000005b6 00001e 000025b6 00000e66  1 .text 	SchM_Tasks.o 
-  000005b6 000014 000025b6 00000e66  2 SchM_3p125ms_Task 	SchM_Tasks.o 
-  000005ca 000002 000025ca 00000e7a  2 SchM_6p25ms_Task 	SchM_Tasks.o 
-  000005cc 000002 000025cc 00000e7c  2 SchM_12p5ms_Task 	SchM_Tasks.o 
-  000005ce 000002 000025ce 00000e7e  2 SchM_25ms_Task 	SchM_Tasks.o 
-  000005d0 000002 000025d0 00000e80  2 SchM_50ms_Task 	SchM_Tasks.o 
-  000005d2 000002 000025d2 00000e82  2 SchM_100ms_Task 	SchM_Tasks.o 
-  000005d4 000000 000025d4 00000e84  1 .text.34 	SchM_Tasks.o 
-  000005d4 000f44 000025d4 00000e84  1 .text 	Can.o 
+  000005b8 000000 000025b8 00000e68  1 .text.78 	SchM.o 
+  000005b8 000030 000025b8 00000e68  1 .text 	SchM_Tasks.o 
+  000005b8 000014 000025b8 00000e68  2 SchM_3p125ms_Task 	SchM_Tasks.o 
+  000005cc 000002 000025cc 00000e7c  2 SchM_6p25ms_Task 	SchM_Tasks.o 
+  000005ce 000002 000025ce 00000e7e  2 SchM_12p5ms_Task 	SchM_Tasks.o 
+  000005d0 000002 000025d0 00000e80  2 SchM_25ms_Task 	SchM_Tasks.o 
+  000005d2 000002 000025d2 00000e82  2 SchM_50ms_Task 	SchM_Tasks.o 
+  000005d4 000014 000025d4 00000e84  2 SchM_100ms_Task 	SchM_Tasks.o 
+  000005e8 000000 000025e8 00000e98  1 .text.35 	SchM_Tasks.o 
+  000005e8 000f44 000025e8 00000e98  1 .text 	Can.o 
   UNUSED   000150 ........ ........    CAN_SendFrameInt Can.o 
-  000005d4 000204 000025d4 00000e84  2 CANB_TxIsr 	Can.o 
-  000007d8 000204 000027d8 00001088  2 CANB_RxIsr 	Can.o 
-  000009dc 0000dc 000029dc 0000128c  2 CANB_Isr 	Can.o 
-  00000ab8 000a60 00002ab8 00001368  2 CAN_Initialization 	Can.o 
+  000005e8 000204 000025e8 00000e98  2 CANB_TxIsr 	Can.o 
+  000007ec 000204 000027ec 0000109c  2 CANB_RxIsr 	Can.o 
+  000009f0 0000dc 000029f0 000012a0  2 CANB_Isr 	Can.o 
+  00000acc 000a60 00002acc 0000137c  2 CAN_Initialization 	Can.o 
   UNUSED   00003c ........ ........    CAN_SendFrame Can.o 
   UNUSED   000170 ........ ........    CAN_Stop Can.o 
-  00001518 000000 00003518 00001dc8  1 .text.235 	Can.o 
-  00001518 00018e 00003518 00001dc8  1 .text 	sysinit.o 
-  00001518 000032 00003518 00001dc8  2 sysinit_disableWatchdog 	sysinit.o 
-  0000154a 000086 0000354a 00001dfa  2 sysinit_InitSysClock 	sysinit.o 
-  000015d0 000094 000035d0 00001e80  2 sysinit_InitMode 	sysinit.o 
-  00001664 000042 00003664 00001f14  2 sysinit_ChangeMode 	sysinit.o 
-  000016a6 000000 000036a6 00001f56  1 .text.34 	sysinit.o 
-  000016a6 00001e 000036a6 00001f56  1 .text 	Can_Manager.o 
+  0000152c 000000 0000352c 00001ddc  1 .text.235 	Can.o 
+  0000152c 00018e 0000352c 00001ddc  1 .text 	sysinit.o 
+  0000152c 000032 0000352c 00001ddc  2 sysinit_disableWatchdog 	sysinit.o 
+  0000155e 000086 0000355e 00001e0e  2 sysinit_InitSysClock 	sysinit.o 
+  000015e4 000094 000035e4 00001e94  2 sysinit_InitMode 	sysinit.o 
+  00001678 000042 00003678 00001f28  2 sysinit_ChangeMode 	sysinit.o 
+  000016ba 000000 000036ba 00001f6a  1 .text.34 	sysinit.o 
+  000016ba 00001e 000036ba 00001f6a  1 .text 	Can_Manager.o 
   UNUSED   00002c ........ ........    CanManager_SendMessage_Success Can_Manager.o 
   UNUSED   00003c ........ ........    control Can_Manager.o 
   UNUSED   00002c ........ ........    CanManager_SendMessage_fail Can_Manager.o 
-  000016a6 00001e 000036a6 00001f56  2 RX_Can_Test 	Can_Manager.o 
+  000016ba 00001e 000036ba 00001f6a  2 RX_Can_Test 	Can_Manager.o 
   UNUSED   0000aa ........ ........    check Can_Manager.o 
-  000016c4 000000 000036c4 00001f74  1 .text.63 	Can_Manager.o 
-  000016c4 0001d2 000036c4 00001f74  1 .text 	bspimain.o 
-  000016c4 000080 000036c4 00001f74  2 InitDSPI_1 	bspimain.o 
-  00001744 00002c 00003744 00001ff4  2 ReadDataDSPI_1 	bspimain.o 
-  00001770 000126 00003770 00002020  2 ConfigureMZC33905DSPI_1 	bspimain.o 
-  00001896 000000 00003896 00002146  1 .text.22 	bspimain.o 
-  00001896 000092 00003896 00002146  1 .text 	ADC.o 
-  00001896 000076 00003896 00002146  2 ADCModeSelector 	ADC.o 
-  0000190c 00001c 0000390c 000021bc  2 Read_ADC 	ADC.o 
-  00001928 000000 00003928 000021d8  1 .text.22 	ADC.o 
-  00001928 0001e6 00003928 000021d8  1 .text 	Passenger_Seat_Sensor.o 
-  UNUSED   0001e6 ........ ........    test Passenger_Seat_Sensor.o 
-  00001928 0001e6 00003928 000021d8  2 test2 	Passenger_Seat_Sensor.o 
-  00001b0e 000000 00003b0e 000023be  1 .text.57 	Passenger_Seat_Sensor.o 
-  00001b0e 00003a 00003b0e 000023be  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00001b0e 00001e 00003b0e 000023be  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00001b2c 00001c 00003b2c 000023dc  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  000016d8 000000 000036d8 00001f88  1 .text.63 	Can_Manager.o 
+  000016d8 0001d2 000036d8 00001f88  1 .text 	bspimain.o 
+  000016d8 000080 000036d8 00001f88  2 InitDSPI_1 	bspimain.o 
+  00001758 00002c 00003758 00002008  2 ReadDataDSPI_1 	bspimain.o 
+  00001784 000126 00003784 00002034  2 ConfigureMZC33905DSPI_1 	bspimain.o 
+  000018aa 000000 000038aa 0000215a  1 .text.22 	bspimain.o 
+  000018aa 0000bc 000038aa 0000215a  1 .text 	ADC.o 
+  000018aa 000092 000038aa 0000215a  2 ADCModeSelector 	ADC.o 
+  0000193c 00002a 0000393c 000021ec  2 Read_ADC 	ADC.o 
+  00001966 000000 00003966 00002216  1 .text.24 	ADC.o 
+  00001966 0003fe 00003966 00002216  1 .text 	Passenger_Seat_Sensor.o 
+  00001966 0002a4 00003966 00002216  2 PassengerSeatSensor 	Passenger_Seat_Sensor.o 
+  00001c0a 000006 00003c0a 000024ba  2 GetSeatSensorState 	Passenger_Seat_Sensor.o 
+  00001c10 000154 00003c10 000024c0  2 test 	Passenger_Seat_Sensor.o 
+  00001d64 000000 00003d64 00002614  1 .text.68 	Passenger_Seat_Sensor.o 
+  00001d64 00003a 00003d64 00002614  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001d64 00001e 00003d64 00002614  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001d82 00001c 00003d82 00002632  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00005a ........ ........    ExPPC_FindExceptionFragment__FPcP12FragmentInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   0000e2 ........ ........    ExPPC_FindExceptionRecord__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000006 ........ ........    ExPPC_PopR31__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
@@ -351,9 +356,9 @@ Link map of __start
   UNUSED   000086 ........ ........    __uncaught_exception_helper__FP12ThrowContext Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000028 ........ ........    __uncaught_exception Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00000a ........ ........    what__Q23std13bad_exceptionCFv Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00001b48 000000 00003b48 000023f8  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00001b48 000064 00003b48 000023f8  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001b48 00004a 00003b48 000023f8  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001d9e 000000 00003d9e 0000264e  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001d9e 000064 00003d9e 0000264e  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001d9e 00004a 00003d9e 0000264e  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_15 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -386,7 +391,7 @@ Link map of __start
   UNUSED   000000 ........ ........    _save32gpr_28 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
-  00001b88 000000 00003b88 00002438    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001dde 000000 00003dde 0000268e    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -427,11 +432,11 @@ Link map of __start
   UNUSED   000000 ........ ........    _rest32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _restgpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _rest32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
-  00001b92 000008 00003b92 00002442  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001b94 000000 00003b94 00002444    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001b9a 00000a 00003b9a 0000244a  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001ba0 000000 00003ba0 00002450    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001ba4 000008 00003ba4 00002454  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001de8 000008 00003de8 00002698  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001dea 000000 00003dea 0000269a    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001df0 00000a 00003df0 000026a0  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001df6 000000 00003df6 000026a6    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001dfa 000008 00003dfa 000026aa  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_29_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_28_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_27_exit Runtime.PPCEABI.VS.UC.a runtime.o
@@ -475,56 +480,57 @@ Link map of __start
   UNUSED   00001a ........ ........    __shl2i Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001a ........ ........    __shr2u Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001c ........ ........    __shr2i Runtime.PPCEABI.VS.UC.a runtime.o
-  00001bac 000000 00003bac 0000245c  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00001bac 000050 00003bac 0000245c  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00001bac 00002e 00003bac 0000245c  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00001bda 000022 00003bda 0000248a  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00001bfc 0000d0 00003bfc 000024ac  1 .text 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  00001bfc 00004c 00003bfc 000024ac  4 MemAllocInit 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  00001c48 000084 00003c48 000024f8  4 MemAlloc 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00001e02 000000 00003e02 000026b2  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00001e02 000050 00003e02 000026b2  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00001e02 00002e 00003e02 000026b2  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00001e30 000022 00003e30 000026e0  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00001e52 000002 00003e54 00002704  4 *fill*
+  00001e54 0000d0 00003e54 00002704  1 .text 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00001e54 00004c 00003e54 00002704  4 MemAllocInit 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00001ea0 000084 00003ea0 00002750  4 MemAlloc 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
 
 
 .rodata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 00003cd0 00002580  1 .rodata 	__ppc_eabi_init.o 
-  00000000 00000c 00003cd0 00002580  4 @22 	__ppc_eabi_init.o 
-  0000000c 000004 00003ce0 00002590  8 *fill*
-  00000010 000030 00003ce0 00002590  1 .rodata 	SchM_Cfg.o 
-  00000010 000030 00003ce0 00002590  8 SchMTaskDescConfig 	SchM_Cfg.o 
+  00000000 00000c 00003f28 000027d8  1 .rodata 	__ppc_eabi_init.o 
+  00000000 00000c 00003f28 000027d8  4 @22 	__ppc_eabi_init.o 
+  0000000c 000004 00003f38 000027e8  8 *fill*
+  00000010 000030 00003f38 000027e8  1 .rodata 	SchM_Cfg.o 
+  00000010 000030 00003f38 000027e8  8 SchMTaskDescConfig 	SchM_Cfg.o 
 
 
 .ctors section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000000 00003d10 000025c0  1 .ctors$00 	Linker Generated Symbol File 
-  00000000 000000 00003d10 000025c0  4 _ctors 	Linker Generated Symbol File 
-  00000000 000004 00003d10 000025c0  1 .ctors$10 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000000 000004 00003d10 000025c0  4 __init_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000004 000004 00003d14 000025c4  1 .ctors$99 	Linker Generated Symbol File 
-  00000004 000004 00003d14 000025c4  4 _ctors$99 	Linker Generated Symbol File 
+  00000000 000000 00003f68 00002818  1 .ctors$00 	Linker Generated Symbol File 
+  00000000 000000 00003f68 00002818  4 _ctors 	Linker Generated Symbol File 
+  00000000 000004 00003f68 00002818  1 .ctors$10 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000000 000004 00003f68 00002818  4 __init_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000004 000004 00003f6c 0000281c  1 .ctors$99 	Linker Generated Symbol File 
+  00000004 000004 00003f6c 0000281c  4 _ctors$99 	Linker Generated Symbol File 
 
 
 .dtors section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000000 00003d18 000025c8  1 .dtors$00 	Linker Generated Symbol File 
-  00000000 000000 00003d18 000025c8  4 _dtors 	Linker Generated Symbol File 
-  00000000 000004 00003d18 000025c8  1 .dtors$15 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000000 000004 00003d18 000025c8  4 __fini_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000004 000004 00003d1c 000025cc  1 .dtors$99 	Linker Generated Symbol File 
-  00000004 000004 00003d1c 000025cc  4 _dtors$99 	Linker Generated Symbol File 
+  00000000 000000 00003f70 00002820  1 .dtors$00 	Linker Generated Symbol File 
+  00000000 000000 00003f70 00002820  4 _dtors 	Linker Generated Symbol File 
+  00000000 000004 00003f70 00002820  1 .dtors$15 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000000 000004 00003f70 00002820  4 __fini_cpp_exceptions_reference 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000004 000004 00003f74 00002824  1 .dtors$99 	Linker Generated Symbol File 
+  00000004 000004 00003f74 00002824  4 _dtors$99 	Linker Generated Symbol File 
 
 
 extab section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 00003d20 000025d0  1 extab 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  00000000 000008 00003d20 000025d0  4 @14 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000000 000008 00003f78 00002828  1 extab 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000000 000008 00003f78 00002828  4 @14 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
 
 
 extabindex section layout
@@ -537,58 +543,64 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 001340 40000000 00002800  1 .__uninitialized_intc_handlertable 	IntcInterrupts.o 
-  00000000 001340 40000000 00002800  8 INTCInterruptsHandlerTable 	IntcInterrupts.o 
+  00000000 001340 40000000 00003000  1 .__uninitialized_intc_handlertable 	IntcInterrupts.o 
+  00000000 001340 40000000 00003000  8 INTCInterruptsHandlerTable 	IntcInterrupts.o 
 
 
 .data section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00004c 40001340 00002800  1 .data 	Can_Cfg.o 
-  00000000 000010 40001340 00002800  8 bios_cnf_can_baudrate_options 	Can_Cfg.o 
-  00000010 000030 40001350 00002810  8 bios_cnf_can_messages 	Can_Cfg.o 
-  00000040 00000c 40001380 00002840  4 bios_cnf_can_dev 	Can_Cfg.o 
+  00000000 00004c 40001340 00003000  1 .data 	Can_Cfg.o 
+  00000000 000010 40001340 00003000  8 bios_cnf_can_baudrate_options 	Can_Cfg.o 
+  00000010 000030 40001350 00003010  8 bios_cnf_can_messages 	Can_Cfg.o 
+  00000040 00000c 40001380 00003040  4 bios_cnf_can_dev 	Can_Cfg.o 
 
 
 .sdata section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 40001390 00002850  1 .sdata 	Can_Cfg.o 
-  00000000 000008 40001390 00002850  8 can_driver_config 	Can_Cfg.o 
-  00000008 000004 40001398 00002858  1 .sdata 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  00000008 000004 40001398 00002858  4 fragmentID 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000000 000008 40001390 00003050  1 .sdata 	Can_Cfg.o 
+  00000000 000008 40001390 00003050  8 can_driver_config 	Can_Cfg.o 
+  00000008 000001 40001398 00003058  1 .sdata 	Passenger_Seat_Sensor.o 
+  00000008 000001 40001398 00003058  1 SeatSensorState 	Passenger_Seat_Sensor.o 
+  00000009 000007 400013a0 00003060  8 *fill*
+  00000010 000004 400013a0 00003060  1 .sdata 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  00000010 000004 400013a0 00003060  4 fragmentID 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
 
 
 .sbss section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000b 400013a0 00002860  1 .sbss 	SchM.o 
-  00000000 000004 400013a0 00002860  4 SchMConfigGlob 	SchM.o 
-  00000004 000004 400013a4 00002864  4 SchMTaskControlBlock 	SchM.o 
-  00000008 000003 400013a8 00002868  4 SchMControl 	SchM.o 
-  0000000b 000005 400013b0 00002870  8 *fill*
-  00000010 000018 400013b0 00002870  1 .sbss 	Can.o 
-  00000010 000004 400013b0 00002870  4 can_config_ptr 	Can.o 
-  00000018 000008 400013b8 00002878  8 can_config_dev_ptr 	Can.o 
-  00000020 000008 400013c0 00002880  8 bios_cnf_can_eng 	Can.o 
-  00000028 000002 400013c8 00002888  1 .sbss 	bspimain.o 
-  00000028 000002 400013c8 00002888  2 RecDataMaster 	bspimain.o 
-  0000002a 000006 400013d0 00002890  8 *fill*
-  00000030 000004 400013d0 00002890  1 .sbss 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  00000030 000004 400013d0 00002890  4 MemAllocConfigGlobPtr 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000000 00000b 400013a8 00003068  1 .sbss 	SchM.o 
+  00000000 000004 400013a8 00003068  4 SchMConfigGlob 	SchM.o 
+  00000004 000004 400013ac 0000306c  4 SchMTaskControlBlock 	SchM.o 
+  00000008 000003 400013b0 00003070  4 SchMControl 	SchM.o 
+  0000000b 000005 400013b8 00003078  8 *fill*
+  00000010 000018 400013b8 00003078  1 .sbss 	Can.o 
+  00000010 000004 400013b8 00003078  4 can_config_ptr 	Can.o 
+  00000018 000008 400013c0 00003080  8 can_config_dev_ptr 	Can.o 
+  00000020 000008 400013c8 00003088  8 bios_cnf_can_eng 	Can.o 
+  00000028 000002 400013d0 00003090  1 .sbss 	bspimain.o 
+  00000028 000002 400013d0 00003090  2 RecDataMaster 	bspimain.o 
+  0000002a 000006 400013d8 00003098  8 *fill*
+  00000030 000003 400013d8 00003098  1 .sbss 	Passenger_Seat_Sensor.o 
+  00000030 000003 400013d8 00003098  4 counter 	Passenger_Seat_Sensor.o 
+  00000033 000005 400013e0 000030a0  8 *fill*
+  00000038 000004 400013e0 000030a0  1 .sbss 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000038 000004 400013e0 000030a0  4 MemAllocConfigGlobPtr 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
 
 
 .sdata2 section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000008 400013d8 00002860  1 .sdata2 	SchM_Cfg.o 
-  00000000 000008 400013d8 00002860  8 SchMConfig 	SchM_Cfg.o 
-  00000008 000008 400013e0 00002868  1 .sdata2 	MemAlloc_Cfg.o 
-  00000008 000008 400013e0 00002868  8 MemAllocConfig 	MemAlloc_Cfg.o 
+  00000000 000008 400013e8 00003068  1 .sdata2 	SchM_Cfg.o 
+  00000000 000008 400013e8 00003068  8 SchMConfig 	SchM_Cfg.o 
+  00000008 000008 400013f0 00003070  1 .sdata2 	MemAlloc_Cfg.o 
+  00000008 000008 400013f0 00003070  8 MemAllocConfig 	MemAlloc_Cfg.o 
 
 
 .sbss2 section layout
@@ -601,27 +613,27 @@ extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 000020 400013e8 00002870  1 .bss 	PIT.o 
-  00000000 000020 400013e8 00002870  8 PIT_Callback 	PIT.o 
-  00000020 000a00 40001408 00002890  1 .bss 	Can.o 
-  00000020 000500 40001408 00002890  8 txd_messages 	Can.o 
-  00000520 000500 40001908 00002d90  8 received_messages 	Can.o 
-  00000a20 000014 40001e08 00003290  1 .bss 	Can_Manager.o 
-  00000a20 000014 40001e08 00003290  4 CanMessage_PduHandler0 	Can_Manager.o 
-  00000a34 000004 40001e20 000032a8  8 *fill*
-  00000a38 00000c 40001e20 000032a8  1 .bss 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00000a38 00000c 40001e20 000032a8  4 fragmentinfo 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00000a44 000004 40001e30 000032b8  8 *fill*
-  00000a48 00000c 40001e30 000032b8  1 .bss 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  00000a48 00000c 40001e30 000032b8  4 MemAllocControl 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000000 000020 400013f8 00003078  1 .bss 	PIT.o 
+  00000000 000020 400013f8 00003078  8 PIT_Callback 	PIT.o 
+  00000020 000a00 40001418 00003098  1 .bss 	Can.o 
+  00000020 000500 40001418 00003098  8 txd_messages 	Can.o 
+  00000520 000500 40001918 00003598  8 received_messages 	Can.o 
+  00000a20 000014 40001e18 00003a98  1 .bss 	Can_Manager.o 
+  00000a20 000014 40001e18 00003a98  4 CanMessage_PduHandler0 	Can_Manager.o 
+  00000a34 000004 40001e30 00003ab0  8 *fill*
+  00000a38 00000c 40001e30 00003ab0  1 .bss 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00000a38 00000c 40001e30 00003ab0  4 fragmentinfo 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00000a44 000004 40001e40 00003ac0  8 *fill*
+  00000a48 00000c 40001e40 00003ac0  1 .bss 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  00000a48 00000c 40001e40 00003ac0  4 MemAllocControl 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
 
 
 extabindex section layout
   Starting        Virtual  File
   address  Size   address  offset
   ---------------------------------
-  00000000 00000c 00003d28 00002604  4 @15 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
-  0000000c 000020 00003d34 00002604  4 _eti_init_info 	Linker Generated Symbol File 
+  00000000 00000c 00003f80 0000285c  4 @15 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
+  0000000c 000020 00003f8c 0000285c  4 _eti_init_info 	Linker Generated Symbol File 
   UNUSED   00000c ........ ........    @224 Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00000c ........ ........    @308 Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00000c ........ ........    @409 Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
@@ -650,25 +662,25 @@ Memory map:
              .init_vle 000000f4 00000204 000004fc 000000f4 000000f4         14
     .ivor_branch_table 00001000 00000100 00000700 00001000 00001000         40
   .__exception_handlers 00001100 000000a8 00000800 00001100 00001100         53
-             .text_vle 00002000 00001ccc 000008b0 00002000 00002000         62
-               .rodata 00003cd0 00000040 00002580 00003cd0 00003cd0        431
-                .ctors 00003d10 00000008 000025c0 00003d10 00003d10        435
-                .dtors 00003d18 00000008 000025c8 00003d18 00003d18        436
-                 extab 00003d20 00000008 000025d0 00003d20 00003d20        437
-            extabindex 00003d28 0000002c 000025d8 00003d28 00003d28        438
-  .__uninitialized_intc_handlertable 40000000 00001340 00002800 00004000 00004000          0
-                 .data 40001340 0000004c 00002800 00004000 00004000        441
-                .sdata 40001390 0000000c 00002850 00004050 00004050        445
-                 .sbss 400013a0 00000034 00002860 00004060 00004060          0
-               .sdata2 400013d8 00000010 00002860 00004060 00004060        446
-                .sbss2 400013e8 00000000 00002870 00004070 00004070          0
-                  .bss 400013e8 00000a54 00002870 00004070 00004070          0
-      .PPC.EMB.apuinfo 0000d8e4 00000000 00010160 00011954 00011954          0
-         .debug_abbrev          000001a9 00002870
-           .debug_info          00005181 00002a19
-           .debug_line          00005d60 00007b9a
-            .debug_loc          00000965 0000d8fa
-       .debug_pubnames          000008d1 0000e25f
+             .text_vle 00002000 00001f24 000008b0 00002000 00002000         62
+               .rodata 00003f28 00000040 000027d8 00003f28 00003f28        461
+                .ctors 00003f68 00000008 00002818 00003f68 00003f68        465
+                .dtors 00003f70 00000008 00002820 00003f70 00003f70        466
+                 extab 00003f78 00000008 00002828 00003f78 00003f78        467
+            extabindex 00003f80 0000002c 00002830 00003f80 00003f80        468
+  .__uninitialized_intc_handlertable 40000000 00001340 00003000 00004000 00004000          0
+                 .data 40001340 0000004c 00003000 00004000 00004000        471
+                .sdata 40001390 00000014 00003050 00004050 00004050        475
+                 .sbss 400013a8 0000003c 00003068 00004068 00004068          0
+               .sdata2 400013e8 00000010 00003068 00004068 00004068        476
+                .sbss2 400013f8 00000000 00003078 00004078 00004078          0
+                  .bss 400013f8 00000a54 00003078 00004078 00004078          0
+      .PPC.EMB.apuinfo 0000dc34 00000000 00010cb0 00011cac 00011cac          0
+         .debug_abbrev          000001a9 00003078
+           .debug_info          00005329 00003221
+           .debug_line          00005e17 0000854a
+            .debug_loc          0000098b 0000e361
+       .debug_pubnames          0000091f 0000ecec
 
 
 Linker generated symbols:
@@ -696,22 +708,22 @@ _f___exception_handlers_rom 00001100
                   _e_text 00002000
               _f_text_vle 00002000
           _f_text_vle_rom 00002000
-              _e_text_vle 00003ccc
-                _f_rodata 00003cd0
-            _f_rodata_rom 00003cd0
-                _e_rodata 00003d10
-                 _f_ctors 00003d10
-             _f_ctors_rom 00003d10
-                 _e_ctors 00003d18
-                 _f_dtors 00003d18
-             _f_dtors_rom 00003d18
-                 _e_dtors 00003d20
-                  _fextab 00003d20
-              _fextab_rom 00003d20
-                  _eextab 00003d28
-             _fextabindex 00003d28
-         _fextabindex_rom 00003d28
-             _eextabindex 00003d54
+              _e_text_vle 00003f24
+                _f_rodata 00003f28
+            _f_rodata_rom 00003f28
+                _e_rodata 00003f68
+                 _f_ctors 00003f68
+             _f_ctors_rom 00003f68
+                 _e_ctors 00003f70
+                 _f_dtors 00003f70
+             _f_dtors_rom 00003f70
+                 _e_dtors 00003f78
+                  _fextab 00003f78
+              _fextab_rom 00003f78
+                  _eextab 00003f80
+             _fextabindex 00003f80
+         _fextabindex_rom 00003f80
+             _eextabindex 00003fac
 _f___uninitialized_intc_handlertable 40000000
 _e___uninitialized_intc_handlertable 40001340
                   _f_data 40001340
@@ -719,23 +731,23 @@ _e___uninitialized_intc_handlertable 40001340
                   _e_data 4000138c
                  _f_sdata 40001390
              _f_sdata_rom 00004050
-                 _e_sdata 4000139c
-                  _f_sbss 400013a0
-                  _e_sbss 400013d4
-                _f_sdata2 400013d8
-            _f_sdata2_rom 00004060
-                _e_sdata2 400013e8
-                 _f_sbss2 400013e8
-                 _e_sbss2 400013e8
-                   _f_bss 400013e8
-                   _e_bss 40001e3c
+                 _e_sdata 400013a4
+                  _f_sbss 400013a8
+                  _e_sbss 400013e4
+                _f_sdata2 400013e8
+            _f_sdata2_rom 00004068
+                _e_sdata2 400013f8
+                 _f_sbss2 400013f8
+                 _e_sbss2 400013f8
+                   _f_bss 400013f8
+                   _e_bss 40001e4c
               _stack_addr 40014000
                _stack_end 40013000
                _heap_addr 003cfff0
                 _heap_end 003d7ff0
-             _nbfunctions 00000042
+             _nbfunctions 00000044
            SIZEOF_HEADERS 00000420
                _SDA_BASE_ 40009390
-              _SDA2_BASE_ 400093d8
+              _SDA2_BASE_ 400093e8
            _ABS_SDA_BASE_ 40009390
-          _ABS_SDA2_BASE_ 400093d8
+          _ABS_SDA2_BASE_ 400093e8

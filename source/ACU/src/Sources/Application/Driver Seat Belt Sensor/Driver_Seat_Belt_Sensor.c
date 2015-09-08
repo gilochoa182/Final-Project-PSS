@@ -3,10 +3,11 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Source:         ADC.c
-* version:          1.0
-* created_by:       Gilberto Ochoa
-* date_created:     Aug  29  2015
+* C Source:         Driver_Seat_Belt_Sensor.c
+* Instance:         RPL_1
+* %version:         2 %
+* %created_by:      uid02495 %
+* %date_created:    Fri Jan  9 14:38:03 2004 %
 *=============================================================================*/
 /* DESCRIPTION : C source template file                                       */
 /*============================================================================*/
@@ -18,20 +19,13 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | 29/08/2015  |                               | Gilberto Ochoa   */
+/*  1.0      | DD/MM/YYYY  |                               | Mr. Template     */
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
 /* Includes */
 /* -------- */
-
-#include "ADC.h"
-
-/* DEFINES */
-
-#define PrecisionCh 0
-#define StandardCh	1
-#define ExternalCh	2
+#include "template.h"
 
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
@@ -77,6 +71,16 @@
 /* Exported functions prototypes */
 /* ----------------------------- */
 
+/* Inline functions */
+/* ---------------- */
+/**************************************************************
+ *  Name                 : inline_func	2
+ *  Description          :
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
+ *  Critical/explanation :    [yes / No]
+ **************************************************************/
+
 
 /* Private functions */
 /* ----------------- */
@@ -87,62 +91,14 @@
  *  Return               :
  *  Critical/explanation :    [yes / No]
  **************************************************************/
- 
 
- 
- /* Exported functions */
+
+/* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	ADCModeSelector
+ *  Name                 :	export_func
  *  Description          :
- *  Parameters           :  int adcmode
- *  Return               :  void
+ *  Parameters           :  [Input, Output, Input / output]
+ *  Return               :
  *  Critical/explanation :    [yes / No]
  **************************************************************/
- void ADCModeSelector(T_UBYTE adcmode)
- {
- 	SIU.PCR[ADC0_P0].R = 0x2000;
- 	SIU.PCR[ADC0_P1].R = 0x2000;
- 	SIU.PCR[ADC0_P2].R = 0x2000;
- 	
- 	//It must be set as "OneShot" or "Scan" Mode
-	if(adcmode == OneShot)
-	{
-		ADC.MCR.R = 0x00000000;
-		ADC.NCMR0.R = 7;      /* Initialize channel*/
-		ADC.CTR0.R = 0x00008606;    /* Time conversion*/
-		ADC.MCR.B.NSTART = 1;       /* Initialize conversion*/
-	}
-	
-	else if(adcmode == Scan)
-	{
-		ADC.MCR.R = 0x20000000;    /* Scan Mode */
-		ADC.NCMR0.R = 7;     /* Initialize channel*/
-		ADC.CTR0.R = 0x00008606;   /* Time conversion*/
-		ADC.MCR.B.NSTART = 1;      /* Initialize conversion*/
-	}
-	else
-	{
-		//do nothing
-	}
-}
-
-
-
-
- /* Exported functions */
-/* ------------------ */
-/**************************************************************
- *  Name                 :	ADCModeSelector
- *  Description          :
- *  Parameters           :  int adcmode
- *  Return               :  void
- *  Critical/explanation :    [yes / No]
- **************************************************************/
- T_UWORD Read_ADC(T_UBYTE channel)
- {
- 	T_UWORD adc_value = 0;
- 	adc_value = (T_UWORD) ADC.CDR[channel].B.CDATA;
- 	
- 	return adc_value;
- }

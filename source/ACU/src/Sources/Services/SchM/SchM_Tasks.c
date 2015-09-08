@@ -18,8 +18,7 @@
 
 void SchM_3p125ms_Task(void)
 {
-	//test();
-	test2();
+	test();
 }
 
 
@@ -54,5 +53,5 @@ void SchM_50ms_Task(void)
 
 void SchM_100ms_Task(void)
 {
-	
+	PassengerSeatSensor();
 }

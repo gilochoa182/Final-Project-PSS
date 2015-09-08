@@ -27,10 +27,15 @@
 
 #include "ADC.h" 
 #include "GPIO.h"
+#include "Passenger_Seat_Sensor.h"
 
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
 /* Functions macros */
+
+SeatSensorStateType SeatSensorState = UNOCCUPIED;
+
+SeatSensorCountType  counter;
 
 /*==================================================*/ 
 /* Definition of constants                          */
@@ -72,124 +77,217 @@
 /* Exported functions prototypes */
 /* ----------------------------- */
 
-/* Inline functions */
-/* ---------------- */
-/**************************************************************
- *  Name                 : inline_func	2
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
-
-
-/* Private functions */
-/* ----------------- */
-/**************************************************************
- *  Name                 : private_func
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
 
 
 /* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	export_func
+ *  Name                 :	PassengerSeatSensor
  *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
+ *  Parameters           :  void
+ *  Return               :	void
+ *  Critical/explanation :  NO
  **************************************************************/
+void PassengerSeatSensor(void)
+{	
+	counter.time++;
+	if(counter.time  == FIVE_HUNDRED_MS)
+	{
+		counter.time = ZERO_MS;
+		
+		/***************   FAULTY   ******************************/
+		if((Read_ADC(PASS_SEAT_SENS) > ZERO_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWO_VOLTS))
+		{
+			counter.unoccupied = ZERO_SAMPLES;
+			counter.occupied = ZERO_SAMPLES;
+			counter.undetermined = ZERO_SAMPLES;
+			
+			counter.faulty++;
+			
+			if(counter.faulty == SIX_SAMPLES)
+			{
+				counter.faulty = ZERO_SAMPLES;
+				
+				SeatSensorState = FAULTY;
+			}
+			
+			else
+			{
+				/* Do nothing */
+			}
+			
+		}
+		/***********************************************************************/
+		
+		
+		
+		
+		
+		/***************   OCCUPIED   ******************************/
+		else if((Read_ADC(PASS_SEAT_SENS) > TWO_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TEN_VOLTS))
+		{	
+			counter.faulty = ZERO_SAMPLES;
+			counter.unoccupied = ZERO_SAMPLES;
+			counter.undetermined = ZERO_SAMPLES;
+			
+			counter.occupied++;
+			
+			if(counter.occupied == SIX_SAMPLES)
+			{
+				counter.occupied = ZERO_SAMPLES;
+				
+				SeatSensorState = OCCUPIED;
+			}
+			
+			else
+			{
+				/* Do nothing */
+			}
+		}
+		/***********************************************************************/
+		
+		
+		
+		
+		
+		/***************   UNDETERMINED   ******************************/
+		else if((Read_ADC(PASS_SEAT_SENS) > TEN_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWELVE_VOLTS))
+		{	
+			counter.faulty = ZERO_SAMPLES;
+			counter.unoccupied = ZERO_SAMPLES;
+			counter.occupied = ZERO_SAMPLES;
+			
+			
+			counter.undetermined++;
+			
+			if(counter.undetermined == SIX_SAMPLES)
+			{
+				counter.undetermined = ZERO_SAMPLES;
+				
+				SeatSensorState = UNDETERMINED;
+			}
+			
+			else
+			{
+				/* Do nothing */
+			}
+			
+		}
+		/***********************************************************************/
+		
+		
+		
+		
+		
+		/***************   UNOCCUPIED   ******************************/
+		else if((Read_ADC(PASS_SEAT_SENS) > TWELVE_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWENTY_VOLTS))
+		{	
+			counter.faulty = ZERO_SAMPLES;
+			counter.undetermined = ZERO_SAMPLES;
+			counter.occupied = ZERO_SAMPLES;
+			
+			counter.unoccupied++;
+			
+			if(counter.unoccupied == SIX_SAMPLES)
+			{
+				counter.unoccupied = ZERO_SAMPLES;
+				
+				SeatSensorState = UNOCCUPIED;
+			}
+			
+			else
+			{
+				/* Do nothing */
+			}
+		}
+		/***********************************************************************/
+		
+		
+		
+		
+		
+		/***************   FAULTY   ******************************/
+		else if(Read_ADC(PASS_SEAT_SENS) > TWENTY_VOLTS)
+		{	
+			counter.undetermined = ZERO_SAMPLES;
+			counter.occupied = ZERO_SAMPLES;
+			counter.unoccupied = ZERO_SAMPLES;
+			
+			counter.faulty++;
+			
+			if(counter.faulty == SIX_SAMPLES)
+			{
+				counter.faulty = ZERO_SAMPLES;
+				
+				SeatSensorState = FAULTY;
+			}
+			
+			else
+			{
+				/* Do nothing */
+			}
+			
+		}
+		/***********************************************************************/	
+	}
+	
+	else
+	{
+		/* Do nothing */
+	}
+		
+}
+
+
+
+
+
+/* Exported functions */
+/* ------------------ */
+/**************************************************************
+ *  Name                 :	GetSeatSensorState
+ *  Description          :
+ *  Parameters           :  void
+ *  Return               :	SeatSensorStateType  SeatSensorState
+ *  Critical/explanation :  NO
+ **************************************************************/
+SeatSensorStateType GetSeatSensorState(void)
+{
+	return SeatSensorState;
+}
+
+
+
 void test(void)
 {
-	if((Read_ADC() > 0) && (Read_ADC() < 50))
+	switch(GetSeatSensorState())
 	{
-		LED_OFF(LED1);
-		LED_OFF(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 50) && (Read_ADC() < 300))
-	{
-		LED_ON(LED1);
-		LED_OFF(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 300) && (Read_ADC() < 550))
-	{
-		LED_ON(LED1);
-		LED_ON(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 550) && (Read_ADC() < 800))
-	{
-		LED_ON(LED1);
-		LED_ON(LED2);
-		LED_ON(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 800) && (Read_ADC() < 1000))
-	{
-		LED_ON(LED1);
-		LED_ON(LED2);
-		LED_ON(LED3);
-		LED_ON(LED4);
+		case FAULTY:
+			LED_ON(LED1);
+			LED_OFF(LED2);
+			LED_OFF(LED3);
+			LED_OFF(LED4);
+			break;
+		
+		case UNOCCUPIED:
+			LED_OFF(LED1);
+			LED_ON(LED2);
+			LED_OFF(LED3);
+			LED_OFF(LED4);
+			break;
+		
+		case UNDETERMINED:
+			LED_OFF(LED1);
+			LED_OFF(LED2);
+			LED_ON(LED3);
+			LED_OFF(LED4);
+			break;
+		
+		case OCCUPIED:
+			LED_OFF(LED1);
+			LED_OFF(LED2);
+			LED_OFF(LED3);
+			LED_ON(LED4);
+			break;
 	}
 }
-
-
-
-void test2(void)
-{
-	if((Read_ADC() > 0) && (Read_ADC() < 50))
-	{
-		LED_OFF(LED1);
-		LED_OFF(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 50) && (Read_ADC() < 300))
-	{
-		LED_ON(LED1);
-		LED_OFF(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 300) && (Read_ADC() < 550))
-	{
-		LED_OFF(LED1);
-		LED_ON(LED2);
-		LED_OFF(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 550) && (Read_ADC() < 800))
-	{
-		LED_OFF(LED1);
-		LED_OFF(LED2);
-		LED_ON(LED3);
-		LED_OFF(LED4);
-	}
-	
-	else if((Read_ADC() > 800) && (Read_ADC() < 1000))
-	{
-		LED_OFF(LED1);
-		LED_OFF(LED2);
-		LED_OFF(LED3);
-		LED_ON(LED4);
-	}
-}
-
-
-

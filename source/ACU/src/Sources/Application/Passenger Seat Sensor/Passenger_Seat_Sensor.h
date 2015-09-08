@@ -28,12 +28,42 @@
 /* Includes */
 /* -------- */
 
+/*-- Defines -----------------------------------------------------------------*/
+
+#define FIVE_HUNDRED_MS    5
+#define ZERO_MS            0
+#define ZERO_VOLTS         0
+#define TWO_VOLTS          102
+#define TEN_VOLTS          510
+#define TWELVE_VOLTS       612
+#define TWENTY_VOLTS       1010
+#define SIX_SAMPLES        6
+#define ZERO_SAMPLES       0
+
 
 /* Exported types and constants */
 /* ---------------------------- */
 
 /* Types definition */
 /* typedef */
+
+typedef enum
+{
+	FAULTY,
+	UNOCCUPIED, 
+	UNDETERMINED,
+	OCCUPIED
+}SeatSensorStateType;
+
+
+typedef struct
+{
+	T_UBYTE	faulty:3;
+	T_UBYTE	unoccupied:3;
+	T_UBYTE	undetermined:3;
+	T_UBYTE	occupied:3;
+	T_UBYTE	time:3;
+}SeatSensorCountType;
 
 
 /*==================================================*/ 
@@ -69,7 +99,8 @@
 /* ---------------------------------------- */
 
 /* Functions prototypes */
-
+extern void PassengerSeatSensor(void);
+extern SeatSensorStateType GetSeatSensorState(void);
 
 /* Functions macros */
 

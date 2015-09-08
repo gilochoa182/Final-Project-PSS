@@ -76,16 +76,19 @@
 
 /* Functions prototypes */
 
-extern void ADCModeSelector(int adcmode);
-extern int Read_ADC(void);
+extern void ADCModeSelector(T_UBYTE adcmode);
+extern T_UWORD Read_ADC(T_UBYTE channel);
 
 /* Functions macros */
 
 /* Exported defines */
 
-#define OneShot       0
-#define Scan          1
-#define PCR_POT       20
-#define CHANNEL_0     0
-
+#define  OneShot            0
+#define  Scan               1
+#define  ADC0_P0            20
+#define  ADC0_P1            21
+#define  ADC0_P2            22
+#define  PASS_SEAT_SENS     0
+#define  PASS_SEATBELT      1
+#define  DRIV_SEATBELT      2
 #endif
