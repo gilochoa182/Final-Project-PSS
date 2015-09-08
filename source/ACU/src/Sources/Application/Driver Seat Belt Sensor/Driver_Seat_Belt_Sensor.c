@@ -37,9 +37,9 @@
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-DriverSeatSensorStateType  DriverSeatBeltState = UNBUCKLE;
+static DriverSeatSensorStateType  DriverSeatBeltState = UNBUCKLE;
 
-DriverSeatSensorCountType  Dricounter;
+static DriverSeatSensorCountType  Dricounter;
 
 /*==================================================*/ 
 /* Definition of constants                          */

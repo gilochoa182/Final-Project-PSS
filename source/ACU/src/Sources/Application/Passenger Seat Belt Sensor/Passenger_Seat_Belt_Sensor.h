@@ -42,10 +42,10 @@
 
 typedef enum
 {
-	DRI_FAULTY,
-	BUCKLE, 
-	DRI_UNDETERMINED,
-	UNBUCKLE
+	PASS_FAULTY,
+	PASS_BUCKLE, 
+	PASS_UNDETERMINED,
+	PASS_UNBUCKLE
 }PassengerSeatSensorStateType;
 
 

@@ -76,23 +76,23 @@ Link map of __start
       5] SchM_3p125ms_Task (func,global) found in SchM_Tasks.o 
        6] testPassenger (func,global) found in Passenger_Seat_Belt_Sensor.o 
         7] GetPassengerSeatBeltState (func,global) found in Passenger_Seat_Belt_Sensor.o 
-         8] PassengerSeatBeltState (object,global) found in Passenger_Seat_Belt_Sensor.o 
+         8] PassengerSeatBeltState (object,local) found in Passenger_Seat_Belt_Sensor.o 
       5] SchM_6p25ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_12p5ms_Task (func,global) found in SchM_Tasks.o 
       5] SchM_25ms_Task (func,global) found in SchM_Tasks.o 
        6] DriverSeatBeltSensor (func,global) found in Driver_Seat_Belt_Sensor.o 
-        7] Dricounter (object,global) found in Driver_Seat_Belt_Sensor.o 
-        7] DriverSeatBeltState (object,global) found in Driver_Seat_Belt_Sensor.o 
+        7] Dricounter (object,local) found in Driver_Seat_Belt_Sensor.o 
+        7] DriverSeatBeltState (object,local) found in Driver_Seat_Belt_Sensor.o 
         7] Read_ADC_3 (func,global) found in ADC.o 
       5] SchM_50ms_Task (func,global) found in SchM_Tasks.o 
        6] PassengerSeatBeltSensor (func,global) found in Passenger_Seat_Belt_Sensor.o 
-        7] Passcounter (object,global) found in Passenger_Seat_Belt_Sensor.o 
+        7] Passcounter (object,local) found in Passenger_Seat_Belt_Sensor.o 
         7] GetSeatSensorState (func,global) found in Passenger_Seat_Sensor.o 
-         8] SeatSensorState (object,global) found in Passenger_Seat_Sensor.o 
+         8] SeatSensorState (object,local) found in Passenger_Seat_Sensor.o 
         7] Read_ADC_2 (func,global) found in ADC.o 
       5] SchM_100ms_Task (func,global) found in SchM_Tasks.o 
        6] PassengerSeatSensor (func,global) found in Passenger_Seat_Sensor.o 
-        7] counter (object,global) found in Passenger_Seat_Sensor.o 
+        7] @LOCAL@PassengerSeatSensor__Fv@counter (object,local) found in Passenger_Seat_Sensor.o 
         7] Read_ADC (func,global) found in ADC.o 
     3] SchM_Init (func,global) found in SchM.o 
      4] SchMConfigGlob (object,global) found in SchM.o 
@@ -329,14 +329,14 @@ Link map of __start
   00001c74 000290 00003c74 00002524  2 DriverSeatBeltSensor 	Driver_Seat_Belt_Sensor.o 
   UNUSED   000006 ........ ........    GetDriverSeatBeltState Driver_Seat_Belt_Sensor.o 
   00001f04 000000 00003f04 000027b4  1 .text.60 	Driver_Seat_Belt_Sensor.o 
-  00001f04 00040e 00003f04 000027b4  1 .text 	Passenger_Seat_Belt_Sensor.o 
-  00001f04 0002b4 00003f04 000027b4  2 PassengerSeatBeltSensor 	Passenger_Seat_Belt_Sensor.o 
-  000021b8 000006 000041b8 00002a68  2 GetPassengerSeatBeltState 	Passenger_Seat_Belt_Sensor.o 
-  000021be 000154 000041be 00002a6e  2 testPassenger 	Passenger_Seat_Belt_Sensor.o 
-  00002312 000000 00004312 00002bc2  1 .text.75 	Passenger_Seat_Belt_Sensor.o 
-  00002312 00003a 00004312 00002bc2  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00002312 00001e 00004312 00002bc2  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  00002330 00001c 00004330 00002be0  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00001f04 00040c 00003f04 000027b4  1 .text 	Passenger_Seat_Belt_Sensor.o 
+  00001f04 0002b2 00003f04 000027b4  2 PassengerSeatBeltSensor 	Passenger_Seat_Belt_Sensor.o 
+  000021b6 000006 000041b6 00002a66  2 GetPassengerSeatBeltState 	Passenger_Seat_Belt_Sensor.o 
+  000021bc 000154 000041bc 00002a6c  2 testPassenger 	Passenger_Seat_Belt_Sensor.o 
+  00002310 000000 00004310 00002bc0  1 .text.75 	Passenger_Seat_Belt_Sensor.o 
+  00002310 00003a 00004310 00002bc0  1 .text 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  00002310 00001e 00004310 00002bc0  2 __register_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  0000232e 00001c 0000432e 00002bde  2 __unregister_fragment 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00005a ........ ........    ExPPC_FindExceptionFragment__FPcP12FragmentInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   0000e2 ........ ........    ExPPC_FindExceptionRecord__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000006 ........ ........    ExPPC_PopR31__FPcP15MWExceptionInfo Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
@@ -379,9 +379,9 @@ Link map of __start
   UNUSED   000086 ........ ........    __uncaught_exception_helper__FP12ThrowContext Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   000028 ........ ........    __uncaught_exception Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
   UNUSED   00000a ........ ........    what__Q23std13bad_exceptionCFv Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  0000234c 000000 0000434c 00002bfc  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
-  0000234c 000064 0000434c 00002bfc  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
-  0000234c 00004a 0000434c 00002bfc  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
+  0000234a 000000 0000434a 00002bfa  1 .text.1683 	Runtime.PPCEABI.VS.UC.a ExceptionPPC.o
+  0000234a 000064 0000434a 00002bfa  1 .text 	Runtime.PPCEABI.VS.UC.a runtime.o
+  0000234a 00004a 0000434a 00002bfa  2 __save_gpr 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_14 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_15 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -414,7 +414,7 @@ Link map of __start
   UNUSED   000000 ........ ........    _save32gpr_28 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_29 Runtime.PPCEABI.VS.UC.a runtime.o
-  0000238c 000000 0000438c 00002c3c    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  0000238a 000000 0000438a 00002c3a    _savegpr_30 (entry of __save_gpr) 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _savegpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _save32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
@@ -455,11 +455,11 @@ Link map of __start
   UNUSED   000000 ........ ........    _rest32gpr_30 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _restgpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000000 ........ ........    _rest32gpr_31 Runtime.PPCEABI.VS.UC.a runtime.o
-  00002396 000008 00004396 00002c46  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  00002398 000000 00004398 00002c48    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  0000239e 00000a 0000439e 00002c4e  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000023a4 000000 000043a4 00002c54    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000023a8 000008 000043a8 00002c58  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00002394 000008 00004394 00002c44  2 __restore_frame_and_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  00002396 000000 00004396 00002c46    __finish_restore_frame_and_exit2 (entry of __restore_frame_and_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  0000239c 00000a 0000439c 00002c4c  2 __restore_gpr_31_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000023a2 000000 000043a2 00002c52    __finish_restore_frame_and_exit (entry of __restore_gpr_31_exit) 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000023a6 000008 000043a6 00002c56  2 __restore_gpr_30_exit 	Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_29_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_28_exit Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   000008 ........ ........    __restore_gpr_27_exit Runtime.PPCEABI.VS.UC.a runtime.o
@@ -503,10 +503,11 @@ Link map of __start
   UNUSED   00001a ........ ........    __shl2i Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001a ........ ........    __shr2u Runtime.PPCEABI.VS.UC.a runtime.o
   UNUSED   00001c ........ ........    __shr2i Runtime.PPCEABI.VS.UC.a runtime.o
-  000023b0 000000 000043b0 00002c60  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
-  000023b0 000050 000043b0 00002c60  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  000023b0 00002e 000043b0 00002c60  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
-  000023de 000022 000043de 00002c8e  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000023ae 000000 000043ae 00002c5e  1 .text.205 	Runtime.PPCEABI.VS.UC.a runtime.o
+  000023ae 000050 000043ae 00002c5e  1 .text 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000023ae 00002e 000043ae 00002c5e  2 __init_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000023dc 000022 000043dc 00002c8c  2 __fini_cpp_exceptions 	Runtime.PPCEABI.VS.UC.a __init_cpp_exceptions.o
+  000023fe 000002 00004400 00002cb0  4 *fill*
   00002400 0000d0 00004400 00002cb0  1 .text 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
   00002400 00004c 00004400 00002cb0  4 MemAllocInit 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
   0000244c 000084 0000444c 00002cfc  4 MemAlloc 	MemAlloc.a D:\p\uid87753\Documents\AEP\RTOS\MemAlloc\src\MemAlloc.o
@@ -615,7 +616,7 @@ extabindex section layout
   00000028 000002 400013e0 000030a0  2 RecDataMaster 	bspimain.o 
   0000002a 000006 400013e8 000030a8  8 *fill*
   00000030 000003 400013e8 000030a8  1 .sbss 	Passenger_Seat_Sensor.o 
-  00000030 000003 400013e8 000030a8  4 counter 	Passenger_Seat_Sensor.o 
+  00000030 000003 400013e8 000030a8  4 @LOCAL@PassengerSeatSensor__Fv@counter 	Passenger_Seat_Sensor.o 
   00000033 000005 400013f0 000030b0  8 *fill*
   00000038 000003 400013f0 000030b0  1 .sbss 	Driver_Seat_Belt_Sensor.o 
   00000038 000003 400013f0 000030b0  4 Dricounter 	Driver_Seat_Belt_Sensor.o 
@@ -709,12 +710,12 @@ Memory map:
                .sdata2 40001408 00000010 00003078 00004878 00004878        550
                 .sbss2 40001418 00000000 00003088 00004888 00004888          0
                   .bss 40001418 00000a54 00003088 00004888 00004888          0
-      .PPC.EMB.apuinfo 0000f240 00000000 000122d0 00013ac8 00013ac8          0
+      .PPC.EMB.apuinfo 0000f1fc 00000000 00012290 00013a84 00013a84          0
          .debug_abbrev          000001a9 00003088
-           .debug_info          000059c1 00003231
-           .debug_line          00006a53 00008bf2
-            .debug_loc          00000a10 0000f645
-       .debug_pubnames          00000a0f 00010055
+           .debug_info          000059cd 00003231
+           .debug_line          00006a55 00008bfe
+            .debug_loc          00000a10 0000f653
+       .debug_pubnames          0000099d 00010063
 
 
 Linker generated symbols:

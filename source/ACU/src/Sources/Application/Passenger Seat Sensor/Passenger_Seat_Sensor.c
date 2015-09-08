@@ -34,9 +34,8 @@
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-SeatSensorStateType SeatSensorState = UNOCCUPIED;
+static SeatSensorStateType SeatSensorState = UNOCCUPIED;
 
-SeatSensorCountType  counter;
 
 /*==================================================*/ 
 /* Definition of constants                          */
@@ -91,6 +90,8 @@ SeatSensorCountType  counter;
  **************************************************************/
 void PassengerSeatSensor(void)
 {	
+	static SeatSensorCountType  counter;
+	
 	counter.time++;
 	if(counter.time  == FIVE_HUNDRED_MS)
 	{
@@ -125,7 +126,7 @@ void PassengerSeatSensor(void)
 		
 		
 		/***************   OCCUPIED   ******************************/
-		else if((Read_ADC(PASS_SEAT_SENS) > TWO_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TEN_VOLTS))
+		else if((Read_ADC(PASS_SEAT_SENS) >= TWO_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TEN_VOLTS))
 		{	
 			counter.faulty = ZERO_SAMPLES;
 			counter.unoccupied = ZERO_SAMPLES;
@@ -152,7 +153,7 @@ void PassengerSeatSensor(void)
 		
 		
 		/***************   UNDETERMINED   ******************************/
-		else if((Read_ADC(PASS_SEAT_SENS) > TEN_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWELVE_VOLTS))
+		else if((Read_ADC(PASS_SEAT_SENS) >= TEN_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWELVE_VOLTS))
 		{	
 			counter.faulty = ZERO_SAMPLES;
 			counter.unoccupied = ZERO_SAMPLES;
@@ -181,7 +182,7 @@ void PassengerSeatSensor(void)
 		
 		
 		/***************   UNOCCUPIED   ******************************/
-		else if((Read_ADC(PASS_SEAT_SENS) > TWELVE_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWENTY_VOLTS))
+		else if((Read_ADC(PASS_SEAT_SENS) >= TWELVE_VOLTS) && (Read_ADC(PASS_SEAT_SENS) < TWENTY_VOLTS))
 		{	
 			counter.faulty = ZERO_SAMPLES;
 			counter.undetermined = ZERO_SAMPLES;
@@ -208,7 +209,7 @@ void PassengerSeatSensor(void)
 		
 		
 		/***************   FAULTY   ******************************/
-		else if(Read_ADC(PASS_SEAT_SENS) > TWENTY_VOLTS)
+		else if(Read_ADC(PASS_SEAT_SENS) >= TWENTY_VOLTS)
 		{	
 			counter.undetermined = ZERO_SAMPLES;
 			counter.occupied = ZERO_SAMPLES;

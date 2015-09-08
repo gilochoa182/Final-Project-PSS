@@ -39,9 +39,9 @@
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-PassengerSeatSensorStateType  PassengerSeatBeltState = UNBUCKLE;
+static PassengerSeatSensorStateType  PassengerSeatBeltState = PASS_UNBUCKLE;
 
-PassengerSeatSensorCountType  Passcounter;
+static PassengerSeatSensorCountType  Passcounter;
 
 /*==================================================*/ 
 /* Definition of constants                          */
@@ -126,7 +126,7 @@ PassengerSeatSensorCountType  Passcounter;
 				{
 					Passcounter.faulty = ZERO_SAMPLES;
 				
-					PassengerSeatBeltState = DRI_FAULTY;
+					PassengerSeatBeltState = PASS_FAULTY;
 				}
 			
 				else
@@ -142,7 +142,7 @@ PassengerSeatSensorCountType  Passcounter;
 		
 		
 			/***************   UNBUCKLE   ******************************/
-			else if((Read_ADC_2(PASS_SEATBELT) > TWO_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TEN_VOLTS))
+			else if((Read_ADC_2(PASS_SEATBELT) >= TWO_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TEN_VOLTS))
 			{	
 				Passcounter.faulty = ZERO_SAMPLES;
 				Passcounter.buckle = ZERO_SAMPLES;
@@ -154,7 +154,7 @@ PassengerSeatSensorCountType  Passcounter;
 				{
 					Passcounter.unbuckle = ZERO_SAMPLES;
 				
-					PassengerSeatBeltState = UNBUCKLE;
+					PassengerSeatBeltState = PASS_UNBUCKLE;
 				}
 			
 				else
@@ -169,7 +169,7 @@ PassengerSeatSensorCountType  Passcounter;
 		
 		
 			/***************   UNDETERMINED   ******************************/
-			else if((Read_ADC_2(PASS_SEATBELT) > TEN_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWELVE_VOLTS))
+			else if((Read_ADC_2(PASS_SEATBELT) >= TEN_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWELVE_VOLTS))
 			{	
 				Passcounter.faulty = ZERO_SAMPLES;
 				Passcounter.unbuckle = ZERO_SAMPLES;
@@ -182,7 +182,7 @@ PassengerSeatSensorCountType  Passcounter;
 				{
 					Passcounter.undetermined = ZERO_SAMPLES;
 				
-					PassengerSeatBeltState = DRI_UNDETERMINED;
+					PassengerSeatBeltState = PASS_UNDETERMINED;
 				}
 			
 				else
@@ -198,7 +198,7 @@ PassengerSeatSensorCountType  Passcounter;
 		
 		
 			/***************   BUCKLE   ******************************/
-			else if((Read_ADC_2(PASS_SEATBELT) > TWELVE_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWENTY_VOLTS))
+			else if((Read_ADC_2(PASS_SEATBELT) >= TWELVE_VOLTS) && (Read_ADC_2(PASS_SEATBELT) < TWENTY_VOLTS))
 			{	
 				Passcounter.faulty = ZERO_SAMPLES;
 				Passcounter.undetermined = ZERO_SAMPLES;
@@ -210,7 +210,7 @@ PassengerSeatSensorCountType  Passcounter;
 				{
 					Passcounter.buckle = ZERO_SAMPLES;
 					
-					PassengerSeatBeltState = BUCKLE;
+					PassengerSeatBeltState = PASS_BUCKLE;
 				}
 			
 				else
@@ -225,7 +225,7 @@ PassengerSeatSensorCountType  Passcounter;
 		
 		
 			/***************   FAULTY   ******************************/
-			else if(Read_ADC_2(PASS_SEATBELT) > TWENTY_VOLTS)
+			else if(Read_ADC_2(PASS_SEATBELT) >= TWENTY_VOLTS)
 			{	
 				Passcounter.undetermined = ZERO_SAMPLES;
 				Passcounter.buckle = ZERO_SAMPLES;
@@ -237,7 +237,7 @@ PassengerSeatSensorCountType  Passcounter;
 				{
 					Passcounter.faulty = ZERO_SAMPLES;
 				
-					PassengerSeatBeltState = DRI_FAULTY;
+					PassengerSeatBeltState = PASS_FAULTY;
 				}
 			
 				else
@@ -258,7 +258,7 @@ PassengerSeatSensorCountType  Passcounter;
 	
 	else if(GetSeatSensorState() ==  UNOCCUPIED)
 	{
-		/* Do nothing */
+		PassengerSeatBeltState = PASS_UNBUCKLE;
 	}
 } /* End PassengerSeatBeltSensor*/
 
@@ -269,37 +269,37 @@ PassengerSeatSensorStateType GetPassengerSeatBeltState(void)
 }
 
 
-
+/*
 void testPassenger(void)
 {
 	switch(GetPassengerSeatBeltState())
 	{
-		case DRI_FAULTY:
+		case PASS_FAULTY:
 			LED_ON(LED1);
 			LED_OFF(LED2);
 			LED_OFF(LED3);
 			LED_OFF(LED4);
 			break;
 		
-		case UNBUCKLE:
+		case PASS_UNBUCKLE:
 			LED_OFF(LED1);
 			LED_ON(LED2);
 			LED_OFF(LED3);
 			LED_OFF(LED4);
 			break;
 		
-		case DRI_UNDETERMINED:
+		case PASS_UNDETERMINED:
 			LED_OFF(LED1);
 			LED_OFF(LED2);
 			LED_ON(LED3);
 			LED_OFF(LED4);
 			break;
 		
-		case BUCKLE:
+		case PASS_BUCKLE:
 			LED_OFF(LED1);
 			LED_OFF(LED2);
 			LED_OFF(LED3);
 			LED_ON(LED4);
 			break;
 	}
-}
+}*/
