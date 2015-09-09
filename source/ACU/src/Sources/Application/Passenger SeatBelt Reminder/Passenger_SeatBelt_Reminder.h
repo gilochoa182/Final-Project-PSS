@@ -3,10 +3,10 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Include:        Driver_Seat_Belt_Sensor.h
-* version:          1.0
+* C Include:        Passenger_SeatBelt_Reminder.h
+* version:          1.0 
 * created_by:       Gilberto Ochoa
-* date_created:     Sep 07 2015
+* date_created:     Aug 30 2015
 *=============================================================================*/
 /* DESCRIPTION : Header file template                                         */
 /*============================================================================*/
@@ -18,17 +18,16 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | 07/09/2015  | SAR/SIF/SCN_xxx               | Gilberto Ochoa   */
+/*  1.0      | 30/08/2015  |                               | Gilberto Ochoa   */
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
-#ifndef DRIVER_SEAT_BELT_SENSOR_H                               /* To avoid double inclusion */
-#define DRIVER_SEAT_BELT_SENSOR_H
+#ifndef PASSENGER_SEATBELT_REMINDER_H   
+#define PASSENGER_SEATBELT_REMINDER_H                    /* To avoid double inclusion */
+
 
 /* Includes */
 /* -------- */
-
-#include "MCU_derivative.h"
 
 /*-- Defines -----------------------------------------------------------------*/
 
@@ -39,24 +38,6 @@
 /* Types definition */
 /* typedef */
 
-typedef enum
-{
-	DRI_FAULTY,
-	DRI_BUCKLE, 
-	DRI_UNDETERMINED,
-	DRI_UNBUCKLE
-}DriverSeatSensorStateType;
-
-
-typedef struct
-{
-	T_UBYTE	faulty:4;
-	T_UBYTE	unbuckle :4;
-	T_UBYTE	undetermined:4;
-	T_UBYTE	buckle:4;
-	T_UBYTE	time:4;
-	T_UBYTE	:4;
-}DriverSeatSensorCountType;
 
 /*==================================================*/ 
 /* Declaration of exported constants                */
@@ -91,7 +72,8 @@ typedef struct
 /* ---------------------------------------- */
 
 /* Functions prototypes */
-extern void DriverSeatBeltSensor(void);
+
+extern void PassBuckleState(void);
 
 /* Functions macros */
 

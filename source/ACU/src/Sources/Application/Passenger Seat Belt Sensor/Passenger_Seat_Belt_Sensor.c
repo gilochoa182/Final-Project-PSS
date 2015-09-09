@@ -27,19 +27,18 @@
 
 #include "Passenger_Seat_Belt_Sensor.h"
 
+#include "Passenger_Seat_Sensor.h"
+
 #include "ADC.h" 
 
 #include "SensorsCommon.h"
 
-#include "Passenger_Seat_Sensor.h"
-
-#include "GPIO.h"
 
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-static PassengerSeatSensorStateType  PassengerSeatBeltState = PASS_UNBUCKLE;
+static PassengerSeatSensorStateType  PassengerSeatBeltState = PASS_BUCKLE;
 
 static PassengerSeatSensorCountType  Passcounter;
 
@@ -258,7 +257,7 @@ static PassengerSeatSensorCountType  Passcounter;
 	
 	else if(GetSeatSensorState() ==  UNOCCUPIED)
 	{
-		PassengerSeatBeltState = PASS_UNBUCKLE;
+		PassengerSeatBeltState = PASS_BUCKLE;
 	}
 } /* End PassengerSeatBeltSensor*/
 
@@ -267,39 +266,3 @@ PassengerSeatSensorStateType GetPassengerSeatBeltState(void)
 {
 	return PassengerSeatBeltState;
 }
-
-
-/*
-void testPassenger(void)
-{
-	switch(GetPassengerSeatBeltState())
-	{
-		case PASS_FAULTY:
-			LED_ON(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case PASS_UNBUCKLE:
-			LED_OFF(LED1);
-			LED_ON(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case PASS_UNDETERMINED:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_ON(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case PASS_BUCKLE:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_ON(LED4);
-			break;
-	}
-}*/

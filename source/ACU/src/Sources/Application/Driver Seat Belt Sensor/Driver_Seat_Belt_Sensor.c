@@ -31,13 +31,12 @@
 
 #include "SensorsCommon.h"
 
-#include "GPIO.h"
 
 /* Functions macros, constants, types and datas         */
 /* ---------------------------------------------------- */
 /* Functions macros */
 
-static DriverSeatSensorStateType  DriverSeatBeltState = UNBUCKLE;
+static DriverSeatSensorStateType  DriverSeatBeltState = DRI_BUCKLE;
 
 static DriverSeatSensorCountType  Dricounter;
 
@@ -150,7 +149,7 @@ static DriverSeatSensorCountType  Dricounter;
 			{
 				Dricounter.unbuckle = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = UNBUCKLE;
+				DriverSeatBeltState = DRI_UNBUCKLE;
 			}
 			
 			else
@@ -206,7 +205,7 @@ static DriverSeatSensorCountType  Dricounter;
 			{
 				Dricounter.buckle = ZERO_SAMPLES;
 				
-				DriverSeatBeltState = BUCKLE;
+				DriverSeatBeltState = DRI_BUCKLE;
 			}
 			
 			else
@@ -247,7 +246,7 @@ static DriverSeatSensorCountType  Dricounter;
 	
 	else
 	{
-		/* Do nothing */
+		DriverSeatBeltState = DRI_BUCKLE;
 	}
 		
 }
@@ -257,40 +256,3 @@ DriverSeatSensorStateType GetDriverSeatBeltState(void)
 {
 	return DriverSeatBeltState;
 }
-
-
-
-/*
-void testDriver(void)
-{
-	switch(GetDriverSeatBeltState())
-	{
-		case DRI_FAULTY:
-			LED_ON(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case UNBUCKLE:
-			LED_OFF(LED1);
-			LED_ON(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case DRI_UNDETERMINED:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_ON(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case BUCKLE:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_ON(LED4);
-			break;
-	}
-}*/

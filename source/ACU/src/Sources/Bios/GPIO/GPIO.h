@@ -30,10 +30,13 @@
 #define LED2       					69
 #define LED3       					70
 #define LED4        				71
-#define BUTTON1						64
-#define BUTTON2						65
-#define BUTTON3						66
-#define BUTTON4						67
+#define BTT_BASIC                   102
+#define BTT_ENHANCED                103
+#define BTT_EURO                    104
+
+#define BASIC_MODE            SIU.GPDI[BTT_BASIC].B.PDI
+#define ENHANCED_MODE         SIU.GPDI[BTT_ENHANCED].B.PDI
+#define EURO_MODE             SIU.GPDI[BTT_EURO].B.PDI
 
 #define GPIO_INPUT					0
 #define GPIO_OUTPUT					1
@@ -59,8 +62,11 @@
 
 extern void vfnGPIO_Init_channel(uint8_t channel, uint8_t input_output, uint8_t Open_drain);
 extern void vfnGPIO_Output(uint8_t channel, uint8_t logical_value);
-extern void vfnGPIO_FlashMainLED(void);
 extern void vfnGPIO_LED_Init(void);
+extern void vfnGPIO_SW_Init(void);
+extern T_UBYTE ReadSwitch(T_UBYTE channel);
+extern T_UBYTE ReadSwitch_2(T_UBYTE channel);
+extern T_UBYTE ReadSwitch_3(T_UBYTE channel);
 
 
 #endif /* _GPIO_H */

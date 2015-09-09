@@ -26,8 +26,9 @@
 /* -------- */
 
 #include "ADC.h" 
-#include "GPIO.h"
+
 #include "Passenger_Seat_Sensor.h"
+
 #include "SensorsCommon.h"
 
 /* Functions macros, constants, types and datas         */
@@ -257,39 +258,3 @@ SeatSensorStateType GetSeatSensorState(void)
 {
 	return SeatSensorState;
 }
-
-
-/*
-void test_SeatSensor(void)
-{
-	switch(GetSeatSensorState())
-	{
-		case FAULTY:
-			LED_ON(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case UNOCCUPIED:
-			LED_OFF(LED1);
-			LED_ON(LED2);
-			LED_OFF(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case UNDETERMINED:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_ON(LED3);
-			LED_OFF(LED4);
-			break;
-		
-		case OCCUPIED:
-			LED_OFF(LED1);
-			LED_OFF(LED2);
-			LED_OFF(LED3);
-			LED_ON(LED4);
-			break;
-	}
-}*/

@@ -40,20 +40,6 @@ void CanManager_SendMessage_Success(void)
 
 
 
-void control(void)
-{
-	if((BUTTON_PRESS(BUTTON4)) == (1))
-	{
-		CanManager_SendMessage_Success();
-	}
-	
-	else if((BUTTON_PRESS(BUTTON1)) == (1))
-	{
-		CanManager_SendMessage_fail();
-	}
-}
-
-
 
 void CanManager_SendMessage_fail(void)
 {

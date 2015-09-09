@@ -19,23 +19,22 @@
 
 void SchM_3p125ms_Task(void)
 {
-	//test_SeatSensor();
-	//testDriver();
-	//testPassenger();
+	
 }
 
 
 
 void SchM_6p25ms_Task(void)
-{
-	
+{	
+	DriverBuckleState();
+	PassBuckleState();
 }
 
 
 
 void SchM_12p5ms_Task(void)
 {
-
+	
 }
 
 
