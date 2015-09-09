@@ -83,16 +83,6 @@ static PassengerSeatSensorCountType  Passcounter;
 /* ----------------------------- */
 
 
-/* Private functions */
-/* ----------------- */
-/**************************************************************
- *  Name                 : private_func
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
-
 
 /* Exported functions */
 /* ------------------ */

@@ -87,10 +87,10 @@
 /* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	GetSeatSensorState
+ *  Name                 :	DriverBuckleState
  *  Description          :
  *  Parameters           :  void
- *  Return               :	SeatSensorStateType  SeatSensorState
+ *  Return               :	void
  *  Critical/explanation :  NO
  **************************************************************/ 
 void DriverBuckleState(void)
@@ -98,21 +98,42 @@ void DriverBuckleState(void)
  	switch(GetReminderModeState())
  	{
  		case BASIC:
- 			LED_ON(LED2);
- 			LED_OFF(LED3);
- 			LED_OFF(LED4);
+ 			switch(GetDriverSeatBeltState())
+ 			{
+ 				case DRI_BUCKLE:
+ 					LED_OFF(LED2);
+ 					break;
+ 		
+ 				case DRI_UNBUCKLE:
+ 					LED_ON(LED2);
+ 					break;
+ 			}
  			break;
  				
  		case ENHANCED:
- 			LED_OFF(LED2);
- 			LED_ON(LED3);
- 			LED_OFF(LED4);	
+ 			switch(GetDriverSeatBeltState())
+ 			{
+ 				case DRI_BUCKLE:
+ 					LED_OFF(LED2);
+ 					break;
+ 		
+ 				case DRI_UNBUCKLE:
+ 					LED_ON(LED2);
+ 					break;
+ 			}	
  			break;
  					
  		case EURO:
- 			LED_OFF(LED2);
- 			LED_OFF(LED3);
- 			LED_ON(LED4);	
+ 			switch(GetDriverSeatBeltState())
+ 			{
+ 				case DRI_BUCKLE:
+ 					LED_OFF(LED2);
+ 					break;
+ 		
+ 				case DRI_UNBUCKLE:
+ 					LED_ON(LED2);
+ 					break;
+ 			}	
  			break;
  	}
  	

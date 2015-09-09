@@ -94,6 +94,7 @@ typedef struct
 /* ---------------------------------------- */
 
 /* Functions prototypes */
+
 extern void PassengerSeatSensor(void);
 extern SeatSensorStateType GetSeatSensorState(void);
 

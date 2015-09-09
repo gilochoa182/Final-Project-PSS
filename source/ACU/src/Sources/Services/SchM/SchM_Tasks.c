@@ -34,26 +34,26 @@ void SchM_6p25ms_Task(void)
 
 void SchM_12p5ms_Task(void)
 {
-	
+
 }
 
 
 
 void SchM_25ms_Task(void)
 {
-	DriverSeatBeltSensor();
+	DriverSeatBeltSensor();   /* Sensor to check the Driver seatbelt*/
 }
 
 
 
 void SchM_50ms_Task(void)
 {
-	PassengerSeatBeltSensor();
+	PassengerSeatBeltSensor();   /* Sensor to check the Passenger seatbelt*/
 }
 
 
 
 void SchM_100ms_Task(void)
 {
-	PassengerSeatSensor();
+	PassengerSeatSensor();        /* Sensor to check if the passenger is present*/
 }

@@ -3,11 +3,10 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Include:        %template.h%
-* Instance:         RPL_1
-* %version:         1 %
-* %created_by:      uid02495 %
-* %date_created:    Fri Feb 28 13:41:01 2003 %
+* C Include:        Reminder_Mode.h
+* version:          1.0
+* created_by:       Gilberto Ochoa 
+* date_created:     Sep  9 2015
 *=============================================================================*/
 /* DESCRIPTION : Header file template                                         */
 /*============================================================================*/
@@ -19,12 +18,12 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | DD/MM/YYYY  | SAR/SIF/SCN_xxx               | Mr. Template     */
+/*  1.0      | 09/09/2015  |                               | Gilberto Ochoa   */
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
-#ifndef TEMPLATE_H                               /* To avoid double inclusion */
-#define TEMPLATE_H
+#ifndef REMINDER_MODE_H                               /* To avoid double inclusion */
+#define REMINDER_MODE_H
 
 /* Includes */
 /* -------- */

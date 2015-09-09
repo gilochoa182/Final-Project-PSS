@@ -3,7 +3,7 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Include:        Passenger_SeatBelt_Reminder.h
+* C Include:        Driver_SeatBelt_Reminder.h
 * version:          1.0 
 * created_by:       Gilberto Ochoa
 * date_created:     Aug 30 2015
@@ -22,8 +22,8 @@
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
-#ifndef PASSENGER_SEATBELT_REMINDER_H   
-#define PASSENGER_SEATBELT_REMINDER_H                    /* To avoid double inclusion */
+#ifndef DRIVER_SEATBELT_REMINDER_H   
+#define DRIVER_SEATBELT_REMINDER_H                    /* To avoid double inclusion */
 
 
 /* Includes */

@@ -85,10 +85,10 @@
 /* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	GetSeatSensorState
+ *  Name                 :	PassBuckleState
  *  Description          :
  *  Parameters           :  void
- *  Return               :	SeatSensorStateType  SeatSensorState
+ *  Return               :	void
  *  Critical/explanation :  NO
  **************************************************************/
  void PassBuckleState(void)

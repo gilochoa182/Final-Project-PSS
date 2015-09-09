@@ -81,25 +81,14 @@ static DriverSeatSensorCountType  Dricounter;
 /* ----------------------------- */
 
 
-/* Private functions */
-/* ----------------- */
-/**************************************************************
- *  Name                 : private_func
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
-
-
 /* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	export_func
+ *  Name                 :	DriverSeatBeltSensor
  *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
+ *  Parameters           :  void
+ *  Return               :  void
+ *  Critical/explanation :  No
  **************************************************************/
  void DriverSeatBeltSensor(void)
  {	
@@ -137,7 +126,7 @@ static DriverSeatSensorCountType  Dricounter;
 		
 		
 		/***************   UNBUCKLE   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TWO_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TEN_VOLTS))
+		else if((Read_ADC_3(DRIV_SEATBELT) >= TWO_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TEN_VOLTS))
 		{	
 			Dricounter.faulty = ZERO_SAMPLES;
 			Dricounter.buckle = ZERO_SAMPLES;
@@ -150,6 +139,7 @@ static DriverSeatSensorCountType  Dricounter;
 				Dricounter.unbuckle = ZERO_SAMPLES;
 				
 				DriverSeatBeltState = DRI_UNBUCKLE;
+				//LED_ON(LED2);
 			}
 			
 			else
@@ -164,7 +154,7 @@ static DriverSeatSensorCountType  Dricounter;
 		
 		
 		/***************   UNDETERMINED   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TEN_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWELVE_VOLTS))
+		else if((Read_ADC_3(DRIV_SEATBELT) >= TEN_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWELVE_VOLTS))
 		{	
 			Dricounter.faulty = ZERO_SAMPLES;
 			Dricounter.unbuckle = ZERO_SAMPLES;
@@ -193,7 +183,7 @@ static DriverSeatSensorCountType  Dricounter;
 		
 		
 		/***************   BUCKLE   ******************************/
-		else if((Read_ADC_3(DRIV_SEATBELT) > TWELVE_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWENTY_VOLTS))
+		else if((Read_ADC_3(DRIV_SEATBELT) >= TWELVE_VOLTS) && (Read_ADC_3(DRIV_SEATBELT) < TWENTY_VOLTS))
 		{	
 			Dricounter.faulty = ZERO_SAMPLES;
 			Dricounter.undetermined = ZERO_SAMPLES;
@@ -206,6 +196,7 @@ static DriverSeatSensorCountType  Dricounter;
 				Dricounter.buckle = ZERO_SAMPLES;
 				
 				DriverSeatBeltState = DRI_BUCKLE;
+				//LED_OFF(LED2);
 			}
 			
 			else
@@ -220,7 +211,7 @@ static DriverSeatSensorCountType  Dricounter;
 		
 		
 		/***************   FAULTY   ******************************/
-		else if(Read_ADC_3(DRIV_SEATBELT) > TWENTY_VOLTS)
+		else if(Read_ADC_3(DRIV_SEATBELT) >= TWENTY_VOLTS)
 		{	
 			Dricounter.undetermined = ZERO_SAMPLES;
 			Dricounter.buckle = ZERO_SAMPLES;
@@ -244,14 +235,23 @@ static DriverSeatSensorCountType  Dricounter;
 		/***********************************************************************/	
 	}
 	
-	else
+	else      /* Else evaluation TWO_HUNDRED_MS */
 	{
-		DriverSeatBeltState = DRI_BUCKLE;
+		/* Do nothing */
 	}
 		
 }
 
 
+/* Exported functions */
+/* ------------------ */
+/**************************************************************
+ *  Name                 :	GetDriverSeatBeltState
+ *  Description          :
+ *  Parameters           :  void
+ *  Return               :  DriverSeatSensorStateType  DriverSeatBeltState
+ *  Critical/explanation :  No
+ **************************************************************/
 DriverSeatSensorStateType GetDriverSeatBeltState(void)
 {
 	return DriverSeatBeltState;

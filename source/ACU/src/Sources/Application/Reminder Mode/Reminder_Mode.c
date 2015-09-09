@@ -3,11 +3,10 @@
 /*============================================================================*/
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*
-* C Source:         %template.c%
-* Instance:         RPL_1
-* %version:         2 %
-* %created_by:      uid02495 %
-* %date_created:    Fri Jan  9 14:38:03 2004 %
+* C Source:         Reminder_Mode.c
+* version:          1.0        
+* created_by:       Gilberto Ochoa
+* date_created:     Sep  9 2015
 *=============================================================================*/
 /* DESCRIPTION : C source template file                                       */
 /*============================================================================*/
@@ -19,7 +18,7 @@
 /*============================================================================*/
 /*  REVISION |   DATE      |                               |      AUTHOR      */
 /*----------------------------------------------------------------------------*/
-/*  1.0      | DD/MM/YYYY  |                               | Mr. Template     */
+/*  1.0      | 09/09/2015  |                               | Gilberto Ochoa   */
 /* Integration under Continuus CM                                             */
 /*============================================================================*/
 
@@ -77,25 +76,14 @@ T_UBYTE ReminderModeState = BASIC;
 
 
 
-/* Private functions */
-/* ----------------- */
-/**************************************************************
- *  Name                 : private_func
- *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
- **************************************************************/
-
-
 /* Exported functions */
 /* ------------------ */
 /**************************************************************
- *  Name                 :	export_func
+ *  Name                 :	ReminderMode
  *  Description          :
- *  Parameters           :  [Input, Output, Input / output]
- *  Return               :
- *  Critical/explanation :    [yes / No]
+ *  Parameters           :  void
+ *  Return               :  void
+ *  Critical/explanation :  
  **************************************************************/
  void ReminderMode(void)
  {
@@ -121,8 +109,16 @@ T_UBYTE ReminderModeState = BASIC;
  }
  
  
- 
-  T_UBYTE GetReminderModeState(void)
+ /* Exported functions */
+/* ------------------ */
+/**************************************************************
+ *  Name                 :	GetReminderModeState
+ *  Description          :
+ *  Parameters           :  void
+ *  Return               :  T_UBYTE ReminderModeState
+ *  Critical/explanation :  
+ **************************************************************/
+ T_UBYTE GetReminderModeState(void)
  {
  	return ReminderModeState;
  }
